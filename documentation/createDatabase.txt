@@ -1,0 +1,106 @@
+DROP DATABASE if EXISTS ski_equipment_manufacturer;
+CREATE DATABASE IF NOT EXISTS ski_equipment_manufacturer COLLATE = utf8_danish_ci;
+USE ski_equipment_manufacturer;
+
+CREATE TABLE `skiType` (
+  `typeID` int(11) NOT NULL PRIMARY KEY,
+  `type` enum('classic','skate','doublePole') NOT NULL,
+  `model` enum('active','activePro','endurance','intrasonic','racePro','raceSpeed','redline') NOT NULL,
+  `temperature` enum('cold','warm','regular') DEFAULT NULL,
+  `gripSystem` enum('wax','intelliGrip') DEFAULT NULL,
+  `description` varchar(200) NOT NULL,
+  `historical` tinyint(1) DEFAULT NULL,
+  `url` varchar(255) NOT NULL,
+  `msrp` float DEFAULT NULL
+
+    
+);
+
+CREATE TABLE `transporter` (
+  `transporterID` int(20) PRIMARY KEY NOT NULL,
+  `name` varchar(100) NOT NULL
+);
+
+CREATE TABLE `customer` ( 
+    `customerID` Int (20) NOT NULL PRIMARY KEY,
+    `customerName` varchar (60)NOT NULL,
+    `startDate` date NOT NULL,
+    `endDate` date NOT NULL,
+    `address` varchar (40) NOT NULL
+);
+
+CREATE TABLE `employee` (
+    `employeeNumber` Int (20) NOT NULL PRIMARY KEY,
+    `name` varchar (60)NOT NULL,
+    `department` varchar (40) NOT NULL
+);
+
+CREATE TABLE `franchise` (
+    `customerID` Int (20) PRIMARY KEY NOT NULL ,
+    `negotiatedPrice` varchar (60)NOT NULL,
+    `information` date DEFAULT NULL,
+    `address` varchar (30)NOT NULL,
+    
+    FOREIGN KEY (`customerID`) REFERENCES `customer` (`customerID`) 
+);
+
+CREATE TABLE `orders` (
+    `orderNumber` Int (20) NOT NULL PRIMARY KEY,
+    `quantity` int(2) NOT NULL,
+    `totalPrice` float NOT NULL ,
+    `state` ENUM('new','open','available','cancelled','ready','shipped') NOT NULL,
+    `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+);
+
+CREATE TABLE `productionPlan` (
+    `employeeNumber` int (20) NOT NULL,
+    `typeID` int(11) NOT NULL,
+    `startDate` date NOT NULL PRIMARY KEY,
+    `endDate` date DEFAULT NULL,
+    
+    FOREIGN KEY (`employeeNumber`) REFERENCES `employee` (`employeeNumber`) ,
+    FOREIGN KEY (`typeID`) REFERENCES `skiType` (`typeID`) 
+);
+
+CREATE TABLE `shipment` (
+    `shipmentNumber` int(20) NOT NULL PRIMARY KEY,
+    `orderNumber` int(20) NOT NULL,
+    `transporterID` int(20) NOT NULL,
+    `customerID` int(20) NOT NULL,
+    `shippingAddress` varchar(100) NOT NULL,
+    `pickUpDate` timestamp NOT NULL DEFAULT current_timestamp(),
+    `state` enum('ready', 'shipped') NOT NULL,
+    
+    FOREIGN KEY (`transporterID`) REFERENCES `transporter` (`transporterID`) ,
+    FOREIGN KEY (`customerID`) REFERENCES `customer` (`customerID`) ,
+    FOREIGN KEY (`orderNumber`) REFERENCES `orders` (`orderNumber`) 
+);
+
+CREATE TABLE `ski` (
+    `productID` int(20) NOT NULL PRIMARY KEY,
+    `typeID` int(11) NOT NULL,
+    `length` enum('142','147','152','157','162','167','172','177','182','187','192','197','202','207') NOT NULL,
+    `weight` enum('20-30','30-40','40-50','50-60','60-70','70-80','80-90','90+') NOT NULL,
+    `reserved` int(11) DEFAULT NULL,
+    
+     FOREIGN KEY (`typeID`) REFERENCES `skiType` (`typeID`) 
+);
+
+
+
+CREATE TABLE `store` (
+    `customerID` Int (20) NOT NULL PRIMARY KEY,
+ 	`price` float NOT NULL,
+    `address` varchar (30),
+    FOREIGN KEY (`customerID`) REFERENCES `customer` (`customerID`) 
+);
+
+CREATE TABLE `teamSkier` (
+  `customerID` int(20) NOT NULL,
+  `dateOfBirth` date NOT NULL,
+  `club` varchar(100) NOT NULL,
+  `numSkis` int(3) DEFAULT NULL,
+  
+  FOREIGN KEY (`customerID`) REFERENCES `customer` (`customerID`) 
+);
+
