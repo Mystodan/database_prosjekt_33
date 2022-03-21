@@ -3,43 +3,43 @@
 Daniel and Sang
 
 ## Example of endpoints
-Endpoint:   Public
-METHOD:     GET
-URL:        localhost/api/products
-Output:     All available products will be retrieved
+Endpoint:   Public <br>
+METHOD:     GET <br>
+URL:        localhost/api/products <br>
+Output:     All available products will be retrieved <br>
 
-Endpoint:   storekeeper
-METHOD:     POST
-URL:        localhost/api/products/create
-                Body (raw): { 
-                "msrp" : 420, 
-                "model" : "Redline", 
-                "type" : "Skate", 
-                "img_url" : "https://lmg.azureedge.net/images/upload/2021/02/24/IMG_0714.jpg?" 
-            }
-Output:     A new product will be added with different values for the attributes.
+Endpoint:   storekeeper <br>
+METHOD:     POST <br>
+URL:        localhost/api/products/create <br>
+                Body (raw): {  <br>
+                "msrp" : 420,  <br>
+                "model" : "Redline",  <br>
+                "type" : "Skate",  <br>
+                "img_url" : "https://lmg.azureedge.net/images/upload/2021/02/24/IMG_0714.jpg?"  <br>
+            } <br>
+Output:     A new product will be added with different values for the attributes. <br>
 
-Endpoint:   customer
-METHOD:     DELETE
-URL:        localhost/api/orders/69/delete
-Output:     Delete the order that has the order_number equal to 69.
+Endpoint:   customer <br>
+METHOD:     DELETE <br>
+URL:        localhost/api/orders/69/delete <br>
+Output:     Delete the order that has the order_number equal to 69. <br>
 
-Endpoint:   Public
-METHOD:     GET
-URL:        localhost/api/products?model=Endurance&type=classic
-Output:     Availalbe products will be retrieved that is of the model "Endurance" and the type is "Classic".
+Endpoint:   Public <br>
+METHOD:     GET <br>
+URL:        localhost/api/products?model=Endurance&type=classic <br>
+Output:     Availalbe products will be retrieved that is of the model "Endurance" and the type is "Classic". <br>
 
-Endpoint:   customer_rep
-METHOD:     GET
-URL:        localhost/api/orders 
-Output:     Retrieve a list of all orders with the state equal to "new".
+Endpoint:   customer_rep <br>
+METHOD:     GET <br>
+URL:        localhost/api/orders  <br>
+Output:     Retrieve a list of all orders with the state equal to "new". <br>
 
-Endpoint:   customer
-METHOD:     GET
-URL:        localhost/api/products/plan
-Output:     Skis that are still in the planning phase is retrieved.
+Endpoint:   customer <br>
+METHOD:     GET <br>
+URL:        localhost/api/products/plan <br>
+Output:     Skis that are still in the planning phase is retrieved. <br>
 
-Endpoint:   customer_rep
-METHOD:     PUT
-URL:        localhost/api/orders/69/state=cancelled
-Output:     Change the state of order with the "orderNumber" equal to 69 to "cancelled".
+Endpoint:   customer_rep <br>
+METHOD:     PUT <br>
+URL:        localhost/api/orders/69/state=cancelled <br>
+Output:     Change the state of order with the "orderNumber" equal to 69 to "cancelled". <br>
