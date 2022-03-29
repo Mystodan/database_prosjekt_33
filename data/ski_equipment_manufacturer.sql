@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 22. Mar, 2022 00:28 AM
+-- Generation Time: 29. Mar, 2022 18:41 PM
 -- Tjener-versjon: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -56,8 +56,9 @@ CREATE TABLE `employee` (
 CREATE TABLE `franchise` (
   `customerID` int(20) NOT NULL,
   `negotiatedPrice` varchar(60) COLLATE utf8_danish_ci NOT NULL,
-  `information` date DEFAULT NULL,
-  `address` varchar(30) COLLATE utf8_danish_ci NOT NULL
+  `information` varchar(200) COLLATE utf8_danish_ci DEFAULT NULL,
+  `address` varchar(30) COLLATE utf8_danish_ci NOT NULL,
+  `numSkis` int(3) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci;
 
 -- --------------------------------------------------------
@@ -82,6 +83,7 @@ CREATE TABLE `orders` (
 
 CREATE TABLE `productionplan` (
   `employeeNumber` int(20) NOT NULL,
+  `quantity` int(2) NOT NULL,
   `typeID` int(11) NOT NULL,
   `startDate` date NOT NULL,
   `endDate` date DEFAULT NULL
@@ -113,7 +115,6 @@ CREATE TABLE `ski` (
   `productID` int(20) NOT NULL,
   `typeID` int(11) NOT NULL,
   `length` enum('142','147','152','157','162','167','172','177','182','187','192','197','202','207') COLLATE utf8_danish_ci NOT NULL,
-  `weight` enum('20-30','30-40','40-50','50-60','60-70','70-80','80-90','90+') COLLATE utf8_danish_ci NOT NULL,
   `reserved` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci;
 
@@ -127,7 +128,6 @@ CREATE TABLE `skitype` (
   `typeID` int(11) NOT NULL,
   `type` enum('classic','skate','doublePole') COLLATE utf8_danish_ci NOT NULL,
   `model` enum('active','activePro','endurance','intrasonic','racePro','raceSpeed','redline') COLLATE utf8_danish_ci NOT NULL,
-  `temperature` enum('cold','warm','regular') COLLATE utf8_danish_ci DEFAULT NULL,
   `gripSystem` enum('wax','intelliGrip') COLLATE utf8_danish_ci DEFAULT NULL,
   `description` varchar(200) COLLATE utf8_danish_ci NOT NULL,
   `historical` tinyint(1) DEFAULT NULL,

@@ -10,7 +10,6 @@ CREATE TABLE `skiType` (
   `historical` tinyint(1) DEFAULT NULL,
   `url` varchar(255) NOT NULL,
   `msrp` float DEFAULT NULL
-
     
 );
 
@@ -34,9 +33,8 @@ CREATE TABLE `employee` (
 );
 
 CREATE TABLE `franchise` (
-    `customerID` Int (20) PRIMARY KEY NOT NULL ,
     `negotiatedPrice` varchar (60)NOT NULL,
-    `information` date DEFAULT NULL,
+    `information` varchar(200) DEFAULT NULL,
     `address` varchar (30)NOT NULL,
     
     FOREIGN KEY (`customerID`) REFERENCES `customer` (`customerID`) 
@@ -87,7 +85,7 @@ CREATE TABLE `ski` (
 
 CREATE TABLE `store` (
     `customerID` Int (20) NOT NULL PRIMARY KEY,
- 	`price` float NOT NULL,
+    `price` float NOT NULL,
     `address` varchar (30),
     FOREIGN KEY (`customerID`) REFERENCES `customer` (`customerID`) 
 );
