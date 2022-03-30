@@ -41,10 +41,10 @@ def change_info():
         
         cur=mysql.connection.cursor()
 
-        change_state = cur.execute("UPDATE `skitype` SET `description`='%s' WHERE `typeID`=1", [info])
+        change_state = cur.execute("UPDATE `skitype` SET `description`=%s WHERE `typeID`=%s", [(info,), (typeID,)])
         mysql.connection.commit()
 
-        change_info = cur.execute("SELECT * FROM `orders`")
+        change_info = cur.execute("SELECT * FROM `skitype`")
 
         if change_info > 0:
             change_info = cur.fetchall()
