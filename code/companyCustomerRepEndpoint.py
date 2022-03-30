@@ -43,7 +43,7 @@ def change_state_open():
         
         cur=mysql.connection.cursor()
 
-        change_state = cur.execute("UPDATE `orders` SET `state`='open' WHERE `orderNumber`=%s AND `state`='new'",(orderNumber))
+        change_state = cur.execute("UPDATE `orders` SET `state`='open' WHERE `orderNumber`=%s AND `state`='new'", (orderNumber))
         mysql.connection.commit()
 
         change_info = cur.execute("SELECT * FROM `orders`")

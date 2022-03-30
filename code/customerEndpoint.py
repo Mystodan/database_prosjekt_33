@@ -15,14 +15,16 @@ def index():
     return "Hello"
 
 # Retrieve all skis that have the state "available"
-@app.route('/get_available',methods=['GET'])
-def get_available():
+@app.route('/get_orders',methods=['GET'])
+def get_orders():
     
     if request.method == 'GET':
+        data = request.get_json()
+        customerID=data['customerID']
         
         cur=mysql.connection.cursor()
 
-        orders = cur.execute("SELECT * FROM `orders` WHERE `state`= 'available'")
+        orders = cur.execute("SELECT * FROM `shipment` WHERE `customerID`=%s", customerID)
 
         if orders >0:
             orders = cur.fetchall()
@@ -30,17 +32,35 @@ def get_available():
         cur.close()
         return jsonify(orders),201
 
-# Change the state of an order to "ready"
-@app.route('/change_state_ready',methods=['POST'])
-def change_state_ready():
+# Retrieve all skis that have the state "available"
+@app.route('/get_order_info',methods=['GET'])
+def get_order_info():
     
-    if request.method == 'POST':
+    if request.method == 'GET':
         data = request.get_json()
-        orderNumber=data['orderNumber']
+        shipmentNumber=data['shipmentNumber']
         
         cur=mysql.connection.cursor()
 
-        change_state = cur.execute("UPDATE `orders` SET `state`='ready' WHERE `orderNumber`=%s",(orderNumber))
+        orders = cur.execute("SELECT * FROM `shipment` WHERE `shipmentNumber`=%s", shipmentNumber)
+
+        if orders >0:
+            orders = cur.fetchall()
+
+        cur.close()
+        return jsonify(orders),201
+
+# Fills an order and creates a shipment request for a shipment with the state "ready"
+@app.route('/place_order',methods=['POST'])
+def place_order():
+    
+    if request.method == 'POST':
+        data = request.get_json()
+        quantity=data['quantity']
+        
+        cur=mysql.connection.cursor()
+
+        add_order = cur.execute("INSERT INTO `orders` (`quantity`, `state`) VALUES (%s, 'new')", [quantity])
         mysql.connection.commit()
 
         change_info = cur.execute("SELECT * FROM `orders`")
@@ -51,6 +71,45 @@ def change_state_ready():
         cur.close()
         return jsonify(change_info),201
 
+# Fills an order and creates a shipment request for a shipment with the state "ready"
+@app.route('/cancel_order',methods=['POST'])
+def cancel_order():
+    
+    if request.method == 'POST':
+        data = request.get_json()
+        orderNumber=data['orderNumber']
+        
+        cur=mysql.connection.cursor()
+
+        change_state = cur.execute("UPDATE `orders` SET `state`='cancelled' WHERE `orderNumber`=%s", (orderNumber))
+        mysql.connection.commit()
+
+        change_info = cur.execute("SELECT * FROM `orders`")
+
+        if change_info > 0:
+            change_info = cur.fetchall()
+
+        cur.close()
+        return jsonify(change_info),201
+
+# Retrieve all skis that have the state "available"
+@app.route('/get_plan_summary',methods=['GET'])
+def get_plan_summary():
+    
+    if request.method == 'GET':
+        data = request.get_json()
+        startDate=data['startDate']
+        endDate=data['endDate']
+        
+        cur=mysql.connection.cursor()
+
+        orders = cur.execute("SELECT `typeID`, `quantity`, `startDate`, `endDate` FROM `productionplan` WHERE %s <= `startDate` AND %s >= `endDate`", [startDate, endDate])
+
+        if orders >0:
+            orders = cur.fetchall()
+
+        cur.close()
+        return jsonify(orders),201
 
 if __name__ == '__main__':
     app.run(debug=True)

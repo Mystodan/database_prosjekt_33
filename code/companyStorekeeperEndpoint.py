@@ -30,17 +30,18 @@ def get_available():
         cur.close()
         return jsonify(orders),201
 
-# Change the state of an order to "ready"
-@app.route('/change_state_ready',methods=['POST'])
-def change_state_ready():
+# Change the info of a newly made ski type
+@app.route('/change_info',methods=['POST'])
+def change_info():
     
     if request.method == 'POST':
         data = request.get_json()
-        orderNumber=data['orderNumber']
+        typeID=data['typeID']
+        info=data['info']
         
         cur=mysql.connection.cursor()
 
-        change_state = cur.execute("UPDATE `orders` SET `state`='ready' WHERE `orderNumber`=%s",(orderNumber))
+        change_state = cur.execute("UPDATE `skitype` SET `description`='%s' WHERE `typeID`=1", [info])
         mysql.connection.commit()
 
         change_info = cur.execute("SELECT * FROM `orders`")

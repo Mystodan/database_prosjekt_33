@@ -23,10 +23,11 @@ def fill_plan():
         employeeNumber=data['employeeNumber']
         startDate=data['startDate']
         endDate=data['endDate']
+        typeID=data['typeID']
         
         cur=mysql.connection.cursor()
 
-        add_plan = cur.execute("INSERT INTO `productionplan` (`employeeNumber`, `startDate`, `endDate`) VALUES (%s, %s, %s)", (employeeNumber, startDate, endDate))
+        add_plan = cur.execute("INSERT INTO `productionplan` (`employeeNumber`, `typeID`, `startDate`, `endDate`) VALUES (%s, %s, %s, %s)", (employeeNumber, typeID, startDate, endDate))
         mysql.connection.commit()
 
         change_info = cur.execute("SELECT * FROM `orders`")

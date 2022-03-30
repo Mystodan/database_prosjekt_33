@@ -30,5 +30,26 @@ def get_ready():
         cur.close()
         return jsonify(orders),201
 
+# Change the state of a shipment when it is picked up
+@app.route('/picked_up',methods=['POST'])
+def picked_up():
+    
+    if request.method == 'POST':
+        data = request.get_json()
+        shipmentNumber=data['shipmentNumber']
+        
+        cur=mysql.connection.cursor()
+
+        change_state = cur.execute("UPDATE `shipment` SET `state`='shipped' WHERE `shipmentNumber`=%s", [shipmentNumber])
+        mysql.connection.commit()
+
+        change_info = cur.execute("SELECT * FROM `shipment`")
+
+        if change_info > 0:
+            change_info = cur.fetchall()
+
+        cur.close()
+        return jsonify(change_info),201
+
 if __name__ == '__main__':
     app.run(debug=True)
