@@ -21,16 +21,23 @@ def get_orders():
     if request.method == 'GET':
         data = request.get_json()
         customerID=data['customerID']
-        
         cur=mysql.connection.cursor()
-
-        orders = cur.execute("SELECT * FROM `shipment` WHERE `customerID`=%s", customerID)
-
+        order = "SELECT shipment.* FROM `shipment`, `customer` WHERE shipment.customerID =%s AND customer.customerID = shipment.customerID"
+        exec = [(customerID,)]
+        
+        if len(data) == 2 :
+          startDate=data['startDate']
+          order = order + " AND customer.startDate = %s"
+          exec = [(customerID,),(startDate,)]
+  
+        orders = cur.execute(order, exec)
+        
         if orders >0:
             orders = cur.fetchall()
-
         cur.close()
         return jsonify(orders),201
+
+
 
 # Retrieve all skis that have the state "available"
 @app.route('/get_order_info',methods=['GET'])
@@ -42,7 +49,7 @@ def get_order_info():
         
         cur=mysql.connection.cursor()
 
-        orders = cur.execute("SELECT * FROM `shipment` WHERE `shipmentNumber`=%s", shipmentNumber)
+        orders = cur.execute("SELECT * FROM `shipment` WHERE `shipmentNumber`=%s", [(shipmentNumber,)])
 
         if orders >0:
             orders = cur.fetchall()
@@ -60,7 +67,7 @@ def place_order():
         
         cur=mysql.connection.cursor()
 
-        add_order = cur.execute("INSERT INTO `orders` (`quantity`, `state`) VALUES (%s, 'new')", [quantity])
+        add_order = cur.execute("INSERT INTO `orders` (`quantity`, `state`) VALUES (%s, 'new')", [(quantity,)])
         mysql.connection.commit()
 
         change_info = cur.execute("SELECT * FROM `orders`")
@@ -81,7 +88,7 @@ def cancel_order():
         
         cur=mysql.connection.cursor()
 
-        change_state = cur.execute("UPDATE `orders` SET `state`='cancelled' WHERE `orderNumber`=%s", (orderNumber))
+        change_state = cur.execute("UPDATE `orders` SET `state`='cancelled' WHERE `orderNumber`=%s", [(orderNumber,)])
         mysql.connection.commit()
 
         change_info = cur.execute("SELECT * FROM `orders`")
@@ -103,7 +110,7 @@ def get_plan_summary():
         
         cur=mysql.connection.cursor()
 
-        orders = cur.execute("SELECT `typeID`, `quantity`, `startDate`, `endDate` FROM `productionplan` WHERE %s <= `startDate` AND %s >= `endDate`", [startDate, endDate])
+        orders = cur.execute("SELECT `typeID`, `quantity`, `startDate`, `endDate` FROM `productionplan` WHERE %s <= `startDate` AND %s >= `endDate`", [(startDate,), (endDate,)])
 
         if orders >0:
             orders = cur.fetchall()

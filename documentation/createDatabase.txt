@@ -57,6 +57,7 @@ CREATE TABLE `orders` (
 
 CREATE TABLE `productionPlan` (
     `employeeNumber` int(20) NOT NULL,
+    `quantity` int NOT NULL,
     `typeID` int(11) NOT NULL,
     `startDate` date NOT NULL PRIMARY KEY,
     `endDate` date DEFAULT NULL,
