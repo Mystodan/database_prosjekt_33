@@ -1,0 +1,29 @@
+INSERT INTO `transporter` (`name`) VALUES
+("Posten"),
+("PostNord"),
+("Bring");
+
+INSERT INTO `transporter` (`name`) VALUES
+("Posten"),
+("PostNord"),
+("Bring");
+
+INSERT INTO `skitype` (`type`, `model`, `description`, `historical`, `url`, `msrp`) VALUES
+( 'classic', 'activePro', 'Classic Active Pro series skii made for athletes that wants to get their socks wet!', NULL, 'https://www.xxl.no/', 1000),
+( 'classic', 'active', 'Classic Active series skii made for athletes that wants to get their socks dry!', NULL, 'https://www.xxl.no/', 800);
+
+INSERT INTO `customer` (`customerName`, `address`) VALUES
+("Sang", "Ringkollen 1F");
+
+INSERT INTO `employee` (`name`, `department`) VALUES
+("Lars", "Sales"),
+("Mats", "Management");
+
+INSERT INTO `orders` (`quantity`, `totalPrice`, `state`) VALUES
+(10, 1000, "new"),
+(20, 2000, "open"),
+(30, 3000, "ready"),
+(40, 4000, "available"),
+(50, 5000, "cancelled"),
+(60, 6000, "shipped");
+

@@ -15,19 +15,23 @@ mysql = MySQL(app)
 def get_model():
     
     if request.method == 'GET':
-
-        data = request.get_json()
+        data = request.get_data()
         order = "SELECT * FROM `skitype`"
-      
+        noPar = False
         cur=mysql.connection.cursor()
-        
         if len(data) > 0 : 
-          model = data['model']
-          order = order + "WHERE `model` = %s"
-          orders = cur.execute(order, [(model,)])
+          data = request.get_json()
+          if len(data) > 0 :
+            model = data['model']
+            order = order + "WHERE `model` = %s"
+            orders = cur.execute(order, [(model,)])
+          else : noPar = True
         else :
-          orders = cur.execute(order,)
+          noPar = True
 
+        if noPar :
+          orders = cur.execute(order,)
+          
         if orders > 0:
             orders = cur.fetchall()
 
