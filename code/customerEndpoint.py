@@ -26,9 +26,9 @@ def get_orders():
         exec = [(customerID,)]
         
         if len(data) == 2 :
-          startDate=data['startDate']
+          since=data['since']
           order = order + " AND customer.startDate = %s"
-          exec = [(customerID,),(startDate,)]
+          exec = [(customerID,),(since,)]
   
         orders = cur.execute(order, exec)
         
