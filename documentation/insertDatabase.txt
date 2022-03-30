@@ -10,7 +10,9 @@ INSERT INTO `transporter` (`name`) VALUES
 
 INSERT INTO `skitype` (`type`, `model`, `description`, `historical`, `url`, `msrp`) VALUES
 ( 'classic', 'activePro', 'Classic Active Pro series skii made for athletes that wants to get their socks wet!', NULL, 'https://www.xxl.no/', 1000),
-( 'classic', 'active', 'Classic Active series skii made for athletes that wants to get their socks dry!', NULL, 'https://www.xxl.no/', 800);
+( 'classic', 'active', 'Classic Active series skii made for athletes that wants to get their socks dry!', NULL, 'https://www.xxl.no/', 800),
+("classic", "redline", "These are good for performance!", "0", "https://madshus.com/no-no/p/redline-3-0-f3", "7700"),
+("skate", "active", "These are good for stability!", "0", "https://madshus.com/no-no/p/nordic-pro-skin", "4000");
 
 INSERT INTO `customer` (`customerName`, `address`) VALUES
 ("Sang", "Ringkollen 1F");
@@ -27,3 +29,11 @@ INSERT INTO `orders` (`quantity`, `totalPrice`, `state`) VALUES
 (50, 5000, "cancelled"),
 (60, 6000, "shipped");
 
+INSERT INTO `productionplan` (`employeeNumber`, `typeID`, `quantity`, `startDate`, `endDate`) VALUES
+("1", "1", "1000", "2022-05-01", "22-05-29"),
+("1", "2", "1100", "2022-06-01", "22-06-29"),
+("2", "1", "1200", "2022-07-01", "22-07-29"),
+("2", "2", "1300", "2022-08-01", "22-08-29");
+
+INSERT INTO `shipment` (orderNumber, transporterID, customerID, shippingAddress, pickUpDate, state) VALUES
+("3", "2", "1", "Ringkollen 1F", "2022-01-01", "ready");
