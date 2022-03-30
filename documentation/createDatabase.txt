@@ -9,7 +9,7 @@ CREATE TABLE `skiType` (
   `description` varchar(200) NOT NULL,
   `historical` tinyint(1) DEFAULT NULL,
   `url` varchar(255) NOT NULL,
-  `msrp` float DEFAULT NULL
+  `msrp` int DEFAULT NULL
     
 );
 
@@ -56,7 +56,7 @@ CREATE TABLE `franchise` (
 CREATE TABLE `orders` (
     `orderNumber` int(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `quantity` int(2) NOT NULL,
-    `totalPrice` float NOT NULL,
+    `totalPrice` int NOT NULL,
     `state` enum("new", "open", "available", "cancelled", "ready", "shipped") NOT NULL,
     `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 );
@@ -106,7 +106,7 @@ CREATE TABLE `ski` (
 
 CREATE TABLE `store` (
     `customerID` int(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `price` float NOT NULL,
+    `price` int NOT NULL,
     `address` varchar(30),
 
     FOREIGN KEY (`customerID`) REFERENCES `customer` (`customerID`) 
