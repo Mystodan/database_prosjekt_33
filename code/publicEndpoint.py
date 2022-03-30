@@ -13,7 +13,6 @@ mysql = MySQL(app)
 
 @app.route('/get_model',methods=['GET'])
 def get_model():
-    
     if request.method == 'GET':
         data = request.get_data()
         order = "SELECT * FROM `skitype`"
@@ -28,12 +27,11 @@ def get_model():
           else : noPar = True
         else :
           noPar = True
-
         if noPar :
           orders = cur.execute(order,)
-          
         if orders > 0:
             orders = cur.fetchall()
+
 
         cur.close()
         return jsonify(orders),201
