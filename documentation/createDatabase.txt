@@ -46,11 +46,14 @@ CREATE TABLE `franchise` (
 );
 
 CREATE TABLE `orders` (
+    `customerID` int(20) NOT NULL,
     `orderNumber` int(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `quantity` int(2) NOT NULL,
     `totalPrice` int NOT NULL,
     `state` enum("new", "open", "available", "cancelled", "ready", "shipped") NOT NULL,
-    `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+    `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+
+    FOREIGN KEY (`customerID`) REFERENCES `customer` (`customerID`)
 );
 
 
@@ -70,13 +73,11 @@ CREATE TABLE `shipment` (
     `shipmentNumber` int(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `orderNumber` int(20) NOT NULL,
     `transporterID` int(20) NOT NULL,
-    `customerID` int(20) NOT NULL,
     `shippingAddress` varchar(100) NOT NULL,
     `pickUpDate` timestamp NOT NULL DEFAULT current_timestamp(),
     `state` enum("ready", "shipped") NOT NULL,
     
     FOREIGN KEY (`transporterID`) REFERENCES `transporter` (`transporterID`),
-    FOREIGN KEY (`customerID`) REFERENCES `customer` (`customerID`),
     FOREIGN KEY (`orderNumber`) REFERENCES `orders` (`orderNumber`) 
 );
 

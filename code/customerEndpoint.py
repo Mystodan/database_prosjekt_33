@@ -22,12 +22,12 @@ def get_orders():
         data = request.get_json()
         customerID=data['customerID']
         cur=mysql.connection.cursor()
-        order = "SELECT shipment.* FROM `shipment`, `customer` WHERE shipment.customerID =%s AND customer.customerID = shipment.customerID"
+        order = "SELECT customer.customerName, orders.* FROM `orders`, `customer` WHERE orders.customerID =%s AND orders.customerID = customer.customerID "
         exec = [(customerID,)]
         
         if len(data) == 2 :
           since=data['since']
-          order = order + " AND customer.startDate = %s"
+          order = order + " AND  %s <= orders.date "
           exec = [(customerID,),(since,)]
   
         orders = cur.execute(order, exec)

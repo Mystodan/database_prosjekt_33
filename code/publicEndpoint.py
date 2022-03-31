@@ -15,15 +15,22 @@ mysql = MySQL(app)
 def get_model():
     if request.method == 'GET':
         data = request.get_data()
-        order = "SELECT * FROM `skitype`"
+        order = "SELECT skitype.*, ski.length FROM `skitype`, `ski`"
         noPar = False
         cur=mysql.connection.cursor()
         if len(data) > 0 : 
           data = request.get_json()
+          print(len(data))
           if len(data) > 0 :
             model = data['model']
-            order = order + "WHERE `model` = %s"
-            orders = cur.execute(order, [(model,)])
+            order = order + "WHERE skitype.model = %s"
+            exec = [(model,)]
+            if len(data) == 2 :
+              length = data['length']
+              order = order + " AND ski.length = %s"
+              exec = [(model,),(length,)]
+            orders = cur.execute(order, exec)
+          
           else : noPar = True
         else :
           noPar = True
@@ -32,7 +39,7 @@ def get_model():
         if orders > 0:
             orders = cur.fetchall()
 
-
+        print(order, len(data))
         cur.close()
         return jsonify(orders),201
 
