@@ -3,19 +3,16 @@
 **Members**: <br>
 Daniel and Sang
 
+### Dependencies 
+Here are the dependencies for the project:
+- <a href = https://www.postman.com/downloads/> Postman </a> for interracting with our database
+- <a href = https://www.apachefriends.org/download.html > XXAMP </a> which includes *phpMyAdmin*
+- <a href = https://www.python.org/downloads/> Python </a> or the <a href = https://www.anaconda.com/products/distribution>Anaconda package</a> which includes python
+- An IDE, we used <a href = https://code.visualstudio.com/download> VSCODE </a>
+- <a href = https://git-scm.com/downloads> Git bash package</a>
 
-
-## How to use...
-0.  Activate Apache and MySQL in XAMPP.
-    - Use http://localhost/phpmyadmin/ to access phpMyAdmin
-1.  Download the SQL file and import it into phpMyAdmin. <br>
-    - Here is the required database <a href = https://git.gvk.idi.ntnu.no/course/idatg2204/idatg2204-2022-workspace/sangnn/project-group-33/-/blob/main/data/ski_equipment_manufacturer.sql>SQL file </a>
-2.  Download the project code (<a href = https://git.gvk.idi.ntnu.no/course/idatg2204/idatg2204-2022-workspace/sangnn/project-group-33/-/tree/main/code>these </a> are the different endpoints). <br>
-3.  Run the environment script in VS Code and then run the different endpoints you want to test. <br>
-    - Heres a <a href = https://docs.python.org/3/library/venv.html>link</a> in order to setup environment
-    - check out **required modules**`⬇` for setting up the environment
-4.  In Postman you can add a body (JSON-format) with extra information as the input for some of different functions (some functions does not require this). <br>
 ### Modules
+Here are the required modules required to run the python code<br><br>
 **IMPORTANT** `⬇`
 
 ![env_activation.png](./images/env_activation.png)
@@ -32,6 +29,35 @@ Daniel and Sang
 ##### Installing required modules
 Use `pip install` and then the required module name
 > for example: `pip install flask`
+
+## How to use...
+0.  Activate Apache and MySQL in XAMPP.
+    - Use http://localhost/phpmyadmin/ to access phpMyAdmin
+1.  Download the SQL file and import it into phpMyAdmin. <br>
+    - Here is the required database <a href = https://git.gvk.idi.ntnu.no/course/idatg2204/idatg2204-2022-workspace/sangnn/project-group-33/-/blob/main/data/ski_equipment_manufacturer.sql>SQL file </a>
+2.  Download the project code (<a href = https://git.gvk.idi.ntnu.no/course/idatg2204/idatg2204-2022-workspace/sangnn/project-group-33/-/tree/main/code>these </a> are the different endpoints). <br>
+3.  Run the environment script in VS Code and then run the different endpoints you want to test. <br>
+    - Heres a <a href = https://docs.python.org/3/library/venv.html>link</a> in order to setup environment
+    - check out **required modules**`⬆` for setting up the environment
+4.  In Postman you can add a body (JSON-format) with extra information as the input for some of different functions (some functions does not require this). <br>
+
+### Importing databases
+![navigatePHP.png](./images/navigatePHP.png)
+> Navigate to the phpMyAdmin button on the dashboard tabs 
+
+![navigateImport.png](./images/navigateImport.png)
+> Navigate to the import button on the phpMyAdmin tabs and press the choose file option
+
+![SQLpick.png](./images/SQLpick.png)
+> Navigate to \project-group-33\data and input the database
+
+
+
+
+
+
+
+
 
 <br>
 <br>
