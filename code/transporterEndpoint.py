@@ -40,7 +40,7 @@ def picked_up():
         
         cur=mysql.connection.cursor()
 
-        change_state = cur.execute("UPDATE `shipment` SET `state`='shipped' WHERE `shipmentNumber`=%s", [shipmentNumber])
+        change_state = cur.execute("UPDATE `shipment` SET `state`='shipped' WHERE `shipmentNumber`=%s", [(shipmentNumber),])
         mysql.connection.commit()
 
         change_info = cur.execute("SELECT * FROM `shipment`")

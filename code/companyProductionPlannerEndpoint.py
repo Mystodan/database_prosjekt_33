@@ -28,7 +28,7 @@ def fill_plan():
         
         cur=mysql.connection.cursor()
 
-        add_plan = cur.execute("INSERT INTO `productionplan` (`employeeNumber`, `typeID`, `startDate`, `endDate`, `quantity`) VALUES (%s, %s, %s, %s, %s)", (employeeNumber, typeID, startDate, endDate, quantity))
+        add_plan = cur.execute("INSERT INTO `productionplan` (`employeeNumber`, `typeID`, `startDate`, `endDate`, `quantity`) VALUES (%s, %s, %s, %s, %s)", ((employeeNumber,), (typeID,), (startDate,), (endDate,), (quantity,)))
         mysql.connection.commit()
 
         change_info = cur.execute("SELECT * FROM `productionplan`")
