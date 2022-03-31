@@ -24,13 +24,14 @@ def fill_plan():
         startDate=data['startDate']
         endDate=data['endDate']
         typeID=data['typeID']
+        quantity=data['quantity']
         
         cur=mysql.connection.cursor()
 
-        add_plan = cur.execute("INSERT INTO `productionplan` (`employeeNumber`, `typeID`, `startDate`, `endDate`) VALUES (%s, %s, %s, %s)", (employeeNumber, typeID, startDate, endDate))
+        add_plan = cur.execute("INSERT INTO `productionplan` (`employeeNumber`, `typeID`, `startDate`, `endDate`, `quantity`) VALUES (%s, %s, %s, %s, %s)", (employeeNumber, typeID, startDate, endDate, quantity))
         mysql.connection.commit()
 
-        change_info = cur.execute("SELECT * FROM `orders`")
+        change_info = cur.execute("SELECT * FROM `productionplan`")
 
         if change_info > 0:
             change_info = cur.fetchall()

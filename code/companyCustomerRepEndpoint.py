@@ -25,7 +25,7 @@ def get_state():
 
         cur=mysql.connection.cursor()
 
-        orders = cur.execute("SELECT * FROM `orders` WHERE `state`=%s",[state])
+        orders = cur.execute("SELECT * FROM `orders` WHERE `state`=%s",[(state,)])
 
         if orders > 0:
             orders = cur.fetchall()
@@ -43,7 +43,7 @@ def change_state_open():
         
         cur=mysql.connection.cursor()
 
-        change_state = cur.execute("UPDATE `orders` SET `state`='open' WHERE `orderNumber`=%s AND `state`='new'", (orderNumber))
+        change_state = cur.execute("UPDATE `orders` SET `state`='open' WHERE `orderNumber`=%s AND `state`='new'", (orderNumber,))
         mysql.connection.commit()
 
         change_info = cur.execute("SELECT * FROM `orders`")
@@ -64,7 +64,7 @@ def change_state_available():
         
         cur=mysql.connection.cursor()
 
-        change_state = cur.execute("UPDATE `orders` SET `state`='available' WHERE `orderNumber`=%s AND `state`='open'",(orderNumber))
+        change_state = cur.execute("UPDATE `orders` SET `state`='available' WHERE `orderNumber`=%s AND `state`='open'",(orderNumber,))
         mysql.connection.commit()
 
         change_info = cur.execute("SELECT * FROM `orders`")
@@ -89,9 +89,9 @@ def fill_order():
         
         cur=mysql.connection.cursor()
 
-        change_state = cur.execute("UPDATE `orders` SET `state`='shipped' WHERE `orderNumber`=%s AND `state`='ready'", (orderNumber))
+        change_state = cur.execute("UPDATE `orders` SET `state`='shipped' WHERE `orderNumber`=%s AND `state`='ready'", (orderNumber,))
 
-        add_shipment = cur.execute("INSERT INTO `shipment` (`transporterID`, `orderNumber`, `customerID`, `shippingAddress`, `pickUpDate`, `state`) VALUES (%s, %s, %s, %s, %s, 'ready')", (transporterID, orderNumber, customerID, shippingAddress, pickUpDate))
+        add_shipment = cur.execute("INSERT INTO `shipment` (`transporterID`, `orderNumber`, `customerID`, `shippingAddress`, `pickUpDate`, `state`) VALUES (%s, %s, %s, %s, %s, 'ready')", ((transporterID,), (orderNumber,), (customerID,), (shippingAddress,), (pickUpDate,)))
         mysql.connection.commit()
 
         change_info = cur.execute("SELECT * FROM `orders`")

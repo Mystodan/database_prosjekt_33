@@ -32,3 +32,33 @@ INSERT INTO `productionplan` (`employeeNumber`, `typeID`, `quantity`, `startDate
 
 INSERT INTO `shipment` (orderNumber, transporterID, customerID, shippingAddress, pickUpDate, state) VALUES
 ("3", "2", "1", "Ringkollen 1F", "2022-01-01", "ready");
+
+INSERT INTO `ski` (`typeID`, `length`, `reserved`) VALUES
+(1, "142", 0),
+(1, "147", 0),
+(1, "152", 0),
+(1, "157", 0),
+(1, "162", 0),
+(1, "167", 0),
+(1, "172", 0),
+(1, "177", 0),
+(1, "182", 0),
+(1, "187", 0),
+(1, "192", 0),
+(1, "197", 0),
+(1, "202", 0),
+(1, "207", 0),
+(2, "142", 0),
+(2, "147", 0),
+(2, "152", 0),
+(2, "157", 0),
+(2, "162", 0),
+(2, "167", 0),
+(2, "172", 0),
+(2, "177", 0),
+(2, "182", 0),
+(2, "187", 0),
+(2, "192", 0),
+(2, "197", 0),
+(2, "202", 0),
+(2, "207", 0);
