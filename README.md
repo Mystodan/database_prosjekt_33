@@ -4,56 +4,91 @@ Members: <br>
 Daniel and Sang
 
 ## Example of endpoints
-Endpoint:   Public <br>
-METHOD:     GET <br>
+#### Public 
+METHOD:     **GET** <br>
 URL:        http://127.0.0.1:5000/get_model <br>
-Output:     All available ski types will be retrieved (with optional model name filter). <br>
+>Output:     All available ski types will be retrieved (with optional model name filter). <br>
 
-Endpoint:   storekeeper <br>
-METHOD:     GET <br>
+METHOD:     **GET** (*optional parameters*) <br>
+URL:        http://127.0.0.1:5000/get_model <br>
+            Body (raw, JSON): <br>
+
+    {  # optional
+    "model": "active"  
+    "length": "152"
+    } 
+
+>Output:     Retrieve all skis that have the model "active". <br>
+
+#### Storekeeper
+METHOD:     **GET** <br>
 URL:        http://127.0.0.1:5000/get_available <br>
-Output:     Retrieve all skis that have the state "available". <br>
+>Output:     Retrieve all skis that have the state "available". <br>
 
-Endpoint:   customer <br>
-METHOD:     POST <br>
-URL:        http://127.0.0.1:5000/cancel_order <br>
-            Body (raw, JSON): {  <br>
-                "orderNumber": "100"  <br>
-            } <br>
-Output:     Delete the order that has the order_number equal to 100. <br>
+#### Customer
+METHOD:     **GET** <br>
+URL:        http://127.0.0.1:5000/get_orders <br>
+            Body (raw, JSON): 
 
-Endpoint:   Public <br>
-METHOD:     GET <br>
-URL:        http://127.0.0.1:5000/get_model <br>
-            Body (raw, JSON): {  <br>
-                "model": "active"  <br>
-            } <br>
-Output:     Retrieve all skis that have the model "active". <br>
+    {  
+    "customerID": "1"
+    } 
+>Output:    Retrieves a list of orders a customer has made "1"  <br>
 
-Endpoint:   customer_rep <br>
-METHOD:     GET <br>
-URL:        http://127.0.0.1:5000/get_state  <br>
-            Body (raw, JSON): {  <br>
-                "state": "new"  <br>
-            } <br>
-Output:     Retrieve a list of all orders with the state equal to "new". <br>
+METHOD:     **GET** (*optional parameters*) <br>
+URL:        http://127.0.0.1:5000/get_orders <br>
+            Body (raw, JSON): 
+            
+    { # optional
+    "customerID": "2", 
+    "since": "22-03-13"
+    } 
+>Output:    Retrieves a list of orders a customer has made (with an optional since filter)  <br>
 
-Endpoint:   customer <br>
-METHOD:     GET <br>
+METHOD:     **GET** <br>
 URL:        http://127.0.0.1:5000/get_plan_summary <br>
-            Body (raw, JSON): {  <br>
-                "startDate": "2022-06-10", <br>
-                "endDate": "2022-08-29"  <br>
-            } <br>
-Output:     Get the production plans that are ongoing between the specified startDate and endDate <br>
+            Body (raw, JSON): 
 
-Endpoint:   customer <br>
-METHOD:     PUT <br>
+    {  
+    "startDate": "2022-06-10", 
+    "endDate": "2022-08-29"  
+    } 
+>Output:     Get the production plans that are ongoing between the specified startDate and endDate <br>
+
+METHOD:     **POST** <br>
 URL:        http://127.0.0.1:5000/cancel_order <br>
-            Body (raw, JSON): {  <br>
-                "orderNumber": "200" <br>
-            } <br>
-Output:     Change the state of an order with the "orderNumber" equal to 200 to "cancelled". <br>
+            Body (raw, JSON): 
+            
+    {  
+    "orderNumber": "100"  
+    } 
+>Output:     Delete the order that has the order_number equal to 100. <br>
+
+METHOD:     **PUT** <br>
+URL:        http://127.0.0.1:5000/cancel_order <br>
+            Body (raw, JSON): 
+   
+    {  
+    "orderNumber": "200" 
+    } 
+>Output:     Change the state of an order with the "orderNumber" equal to 200 to "cancelled". <br>
+
+#### Customer representative
+
+METHOD:     **GET** <br>
+URL:        http://127.0.0.1:5000/get_state  <br>
+            Body (raw, JSON): 
+            
+    {  
+    "state": "new"  
+    } 
+>Output:     Retrieve a list of all orders with the state equal to "new". <br>
+
+
+
+
+
+
 
 ## How to use...
 0. Activate Apache and MySQL in XAMPP.
