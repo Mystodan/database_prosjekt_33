@@ -3,7 +3,40 @@
 Members: <br>
 Daniel and Sang
 
+
+
+## How to use...
+0.  Activate Apache and MySQL in XAMPP.
+    - Use http://localhost/phpmyadmin/ to access phpMyAdmin
+1.  Download the SQL file and import it into phpMyAdmin. <br>
+    - Here is the required database <a href = https://git.gvk.idi.ntnu.no/course/idatg2204/idatg2204-2022-workspace/sangnn/project-group-33/-/blob/main/data/ski_equipment_manufacturer.sql>SQL file </a>
+2.  Download the project code (<a href = https://git.gvk.idi.ntnu.no/course/idatg2204/idatg2204-2022-workspace/sangnn/project-group-33/-/tree/main/code>these </a> are the different endpoints). <br>
+3.  Run the environment script in VS Code and then run the different endpoints you want to test. <br>
+    - Heres a <a href = https://docs.python.org/3/library/venv.html>link</a> in order to setup environment
+    - check out **required modules**`⬇` for setting up the environment
+4.  In Postman you can add a body (JSON-format) with extra information as the input for some of different functions (some functions does not require this). <br>
+### Modules
+**IMPORTANT** `⬇`
+> Remember to **activate** your environment before installing the modules so that the environment gets the required modules<br>
+
+![images/python_env.png](./images/python_env.png)
+
+> Remember to set the environment as the preferred python compiler f.ex. `3.10.4 (virt_env': venv)`
+#### Required modules
+- flask
+- flask_mysqldb
+
+##### Installing required modules
+Use `pip install` and then the required module name
+> for example: `pip install flask`
+
+<br>
+<br>
+<br>
+
 ## Example of endpoints
+> Testing these endpoints can be done by hitting the copy button next to the previewed code and pasting it onto the body section of postman<br>
+> **!!** - remember that when copying the url any spaces after the url would likely lead to a **404** - Not found error.
 #### Public 
 METHOD:     **GET** <br>
 URL:        http://127.0.0.1:5000/get_model <br>
@@ -13,7 +46,7 @@ METHOD:     **GET** (*optional parameters*) <br>
 URL:        http://127.0.0.1:5000/get_model <br>
             Body (raw, JSON): <br>
 
-    {  // optional
+    {  
     "model": "active",  
     "length": "152"
     } 
@@ -39,7 +72,7 @@ METHOD:     **GET** (*optional parameters*) <br>
 URL:        http://127.0.0.1:5000/get_orders <br>
             Body (raw, JSON): 
             
-    { // optional
+    { 
     "customerID": "2", 
     "since": "22-03-13"
     } 
@@ -90,9 +123,3 @@ URL:        http://127.0.0.1:5000/get_state  <br>
 
 
 
-## How to use...
-0. Activate Apache and MySQL in XAMPP.
-1. Download the SQL file and import it into phpMyAdmin. <br>
-2. Download the project code (these are the different endpoints). <br>
-3. Run the environment script in VS Code and then run the different endpoints you want to test. <br>
-4. In Postman you can add a body (JSON-format) with extra information as the input for some of different functions (some functions does not require this). <br>
