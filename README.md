@@ -87,6 +87,36 @@ METHOD:     **GET** <br>
 URL:        http://127.0.0.1:5000/get_available <br>
 >Output:     Retrieve all skis that have the state "available". <br>
 
+METHOD:     **PUT** <br>
+URL:        http://127.0.0.1:5000/change_info <br>
+            Body (raw, JSON): 
+
+    {
+    "info": "Test 123",
+    "typeID": "1"
+    }
+>Output:    Change the info (description) of a newly made ski type (typeID: 1) to "Test 123"
+
+METHOD:     **PUT** <br>
+URL:        http://127.0.0.1:5000/change_state_ready <br>
+            Body (raw, JSON): 
+
+    {
+    "orderNumber": "4"
+    }
+>Output:    Changes the state of order 4 from "available" to "ready"
+
+METHOD:     **POST** <br>
+URL:        http://127.0.0.1:5000/create_record <br>
+            Body (raw, JSON): 
+
+    {
+    "typeID": "1",
+    "length": "147",
+    "reserved": "0"
+    }
+>Output:    Creates a new record for a newly produced ski with the data from JSON
+
 #### Customer
 METHOD:     **GET** <br>
 URL:        http://127.0.0.1:5000/get_orders <br>
@@ -135,6 +165,25 @@ URL:        http://127.0.0.1:5000/cancel_order <br>
     } 
 >Output:     Change the state of an order with the "orderNumber" equal to 200 to "cancelled". <br>
 
+METHOD:     **POST** <br>
+URL:        http://127.0.0.1:5000/place_order <br>
+            Body (raw, JSON): 
+
+    {
+    "customerID": "1",
+    "quantity": "999"
+    }
+>Output:    Creates a new order for "customerID: 1" and with "quantity: 999"
+
+METHOD:     **GET** <br>
+URL:        http://127.0.0.1:5000/get_order_info <br>
+            Body (raw, JSON): 
+
+    {
+    "orderNumber": "2",
+    }
+>Output:    Retrieve all information and its state for "orderNumber: 2"
+
 #### Customer representative
 
 METHOD:     **GET** <br>
@@ -175,3 +224,33 @@ URL:        http://127.0.0.1:5000/fill_order <br>
     "pickUpDate": "29-04-2022"
     }
 >Output:    Fills an order and creates a shipment request for a shipment
+
+#### Production planner
+
+METHOD:     **POST** <br>
+URL:        http://127.0.0.1:5000/fill_plan <br>
+            Body (raw, JSON): 
+
+    {
+    "employeeNumber": "2",
+    "typeID": "1",
+    "quantity": "2000",
+    "startDate": "2023-01-01",
+    "endDate": "2023-01-29"
+    }
+>Output:    Fills an production plan with data from JSON and adds it to the database
+
+#### Transporter
+
+METHOD:     **GET** <br>
+URL:        http://127.0.0.1:5000/get_ready <br>
+>Output:    Retrieve all orders that have the state "ready"
+
+METHOD:     **PUT** <br>
+URL:        http://127.0.0.1:5000/picked_up <br>
+            Body (raw, JSON): 
+
+    {
+    "shipmentNumber": "1"
+    }
+>Output:    Change the state of "shipmentNumber: 1" from "ready" to "shipped" once picked up
