@@ -1,5 +1,6 @@
 # Project group 33
 
+Members: <br>
 Daniel and Sang
 
 ## Example of endpoints
@@ -53,3 +54,10 @@ URL:        http://127.0.0.1:5000/cancel_order <br>
                 "orderNumber": "200" <br>
             } <br>
 Output:     Change the state of an order with the "orderNumber" equal to 200 to "cancelled". <br>
+
+## How to use...
+0. Activate Apache and MySQL in XAMPP.
+1. Download the SQL file and import it into phpMyAdmin. <br>
+2. Download the project code (these are the different endpoints). <br>
+3. Run the environment script in VS Code and then run the different endpoints you want to test. <br>
+4. In Postman you can add a body (JSON-format) with extra information as the input for some of different functions (some functions does not require this). <br>
