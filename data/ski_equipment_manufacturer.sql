@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 30. Mar, 2022 17:57 PM
+-- Generation Time: 31. Mar, 2022 12:27 PM
 -- Tjener-versjon: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -94,12 +94,12 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`orderNumber`, `quantity`, `totalPrice`, `state`, `date`) VALUES
-(1, 10, 1000, 'new', '2022-03-30 15:55:49'),
-(2, 20, 2000, 'open', '2022-03-30 15:55:49'),
-(3, 30, 3000, 'ready', '2022-03-30 15:55:49'),
-(4, 40, 4000, 'available', '2022-03-30 15:55:49'),
-(5, 50, 5000, 'cancelled', '2022-03-30 15:55:49'),
-(6, 60, 6000, 'shipped', '2022-03-30 15:55:49');
+(1, 10, 1000, 'new', '2022-03-31 10:27:07'),
+(2, 20, 2000, 'open', '2022-03-31 10:27:07'),
+(3, 30, 3000, 'ready', '2022-03-31 10:27:07'),
+(4, 40, 4000, 'available', '2022-03-31 10:27:07'),
+(5, 50, 5000, 'cancelled', '2022-03-31 10:27:07'),
+(6, 60, 6000, 'shipped', '2022-03-31 10:27:07');
 
 -- --------------------------------------------------------
 
@@ -109,10 +109,21 @@ INSERT INTO `orders` (`orderNumber`, `quantity`, `totalPrice`, `state`, `date`) 
 
 CREATE TABLE `productionplan` (
   `employeeNumber` int(20) NOT NULL,
+  `quantity` int(11) NOT NULL,
   `typeID` int(11) NOT NULL,
   `startDate` date NOT NULL,
   `endDate` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci;
+
+--
+-- Dataark for tabell `productionplan`
+--
+
+INSERT INTO `productionplan` (`employeeNumber`, `quantity`, `typeID`, `startDate`, `endDate`) VALUES
+(1, 1000, 1, '2022-05-01', '2022-05-29'),
+(1, 1100, 2, '2022-06-01', '2022-06-29'),
+(2, 1200, 1, '2022-07-01', '2022-07-29'),
+(2, 1300, 2, '2022-08-01', '2022-08-29');
 
 -- --------------------------------------------------------
 
@@ -129,6 +140,13 @@ CREATE TABLE `shipment` (
   `pickUpDate` timestamp NOT NULL DEFAULT current_timestamp(),
   `state` enum('ready','shipped') COLLATE utf8_danish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci;
+
+--
+-- Dataark for tabell `shipment`
+--
+
+INSERT INTO `shipment` (`shipmentNumber`, `orderNumber`, `transporterID`, `customerID`, `shippingAddress`, `pickUpDate`, `state`) VALUES
+(1, 3, 2, 1, 'Ringkollen 1F', '2021-12-31 23:00:00', 'ready');
 
 -- --------------------------------------------------------
 
@@ -158,6 +176,16 @@ CREATE TABLE `skitype` (
   `url` varchar(255) COLLATE utf8_danish_ci NOT NULL,
   `msrp` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci;
+
+--
+-- Dataark for tabell `skitype`
+--
+
+INSERT INTO `skitype` (`typeID`, `type`, `model`, `description`, `historical`, `url`, `msrp`) VALUES
+(1, 'classic', 'activePro', 'Classic Active Pro series skii made for athletes that wants to get their socks wet!', NULL, 'https://www.xxl.no/', 1000),
+(2, 'classic', 'active', 'Classic Active series skii made for athletes that wants to get their socks dry!', NULL, 'https://www.xxl.no/', 800),
+(3, 'classic', 'redline', 'These are good for performance!', 0, 'https://madshus.com/no-no/p/redline-3-0-f3', 7700),
+(4, 'skate', 'active', 'These are good for stability!', 0, 'https://madshus.com/no-no/p/nordic-pro-skin', 4000);
 
 -- --------------------------------------------------------
 
@@ -202,7 +230,10 @@ CREATE TABLE `transporter` (
 INSERT INTO `transporter` (`transporterID`, `name`) VALUES
 (1, 'Posten'),
 (2, 'PostNord'),
-(3, 'Bring');
+(3, 'Bring'),
+(4, 'Posten'),
+(5, 'PostNord'),
+(6, 'Bring');
 
 --
 -- Indexes for dumped tables
@@ -306,7 +337,7 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `shipment`
 --
 ALTER TABLE `shipment`
-  MODIFY `shipmentNumber` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `shipmentNumber` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `ski`
@@ -318,7 +349,7 @@ ALTER TABLE `ski`
 -- AUTO_INCREMENT for table `skitype`
 --
 ALTER TABLE `skitype`
-  MODIFY `typeID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `typeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `store`
@@ -336,7 +367,7 @@ ALTER TABLE `teamskier`
 -- AUTO_INCREMENT for table `transporter`
 --
 ALTER TABLE `transporter`
-  MODIFY `transporterID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `transporterID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Begrensninger for dumpede tabeller
