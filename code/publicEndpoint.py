@@ -10,7 +10,7 @@ app.config['MYSQL_DB']="ski_equipment_manufacturer"
 
 mysql = MySQL(app)
 
-
+# Retrieve all ski types or all skis of a specified model.
 @app.route('/get_model',methods=['GET'])
 def get_model():
     if request.method == 'GET':

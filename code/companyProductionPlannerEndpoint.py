@@ -14,7 +14,7 @@ mysql = MySQL(app)
 def index():
     return "Hello"
 
-# Fills an production plan
+# Fills an production plan and adds it to the database
 @app.route('/fill_plan',methods=['POST'])
 def fill_plan():
     

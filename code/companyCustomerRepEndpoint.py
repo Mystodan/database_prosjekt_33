@@ -14,7 +14,7 @@ mysql = MySQL(app)
 def index():
     return "Hello"
 
-# Retrieve all orders that have the state "available"
+# Retrieve all orders that have the specified value as their "state"
 @app.route('/get_state',methods=['GET'])
 def get_state():
     
@@ -75,7 +75,7 @@ def change_state_available():
         cur.close()
         return jsonify(change_info),201
 
-# Fills an order and creates a shipment request for a shipment with the state "ready"
+# Fills an order and creates a shipment request for a shipment
 @app.route('/fill_order',methods=['POST'])
 def fill_order():
     

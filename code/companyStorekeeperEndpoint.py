@@ -52,6 +52,26 @@ def change_info():
         cur.close()
         return jsonify(change_info),201
 
+# Changes the state of an order to from "available" to "ready"
+@app.route('/change_state_ready',methods=['PUT'])
+def cancel_order():
+    
+    if request.method == 'PUT':
+        data = request.get_json()
+        orderNumber=data['orderNumber']
+        
+        cur=mysql.connection.cursor()
+
+        change_state = cur.execute("UPDATE `orders` SET `state`='ready' WHERE `orderNumber`=%s AND `state`='available'", [(orderNumber,)])
+        mysql.connection.commit()
+
+        change_info = cur.execute("SELECT * FROM `orders`")
+
+        if change_info > 0:
+            change_info = cur.fetchall()
+
+        cur.close()
+        return jsonify(change_info),201
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -14,7 +14,7 @@ mysql = MySQL(app)
 def index():
     return "Hello"
 
-# Retrieve all skis that have the state "available"
+# Retrieve a list of orders that a customer has made (with an optional since filter)
 @app.route('/get_orders',methods=['GET'])
 def get_orders():
     
@@ -39,17 +39,17 @@ def get_orders():
 
 
 
-# Retrieve all skis that have the state "available"
+# Retrieve all information about an order and its state
 @app.route('/get_order_info',methods=['GET'])
 def get_order_info():
     
     if request.method == 'GET':
         data = request.get_json()
-        shipmentNumber=data['shipmentNumber']
+        orderNumber=data['orderNumber']
         
         cur=mysql.connection.cursor()
 
-        orders = cur.execute("SELECT * FROM `shipment` WHERE `shipmentNumber`=%s", [(shipmentNumber,)])
+        orders = cur.execute("SELECT * FROM `orders` WHERE `orderNumber`=%s", [(orderNumber,)])
 
         if orders >0:
             orders = cur.fetchall()
@@ -57,7 +57,7 @@ def get_order_info():
         cur.close()
         return jsonify(orders),201
 
-# Fills an order and creates a shipment request for a shipment with the state "ready"
+# Places a new order with a specified quantity
 @app.route('/place_order',methods=['POST'])
 def place_order():
     
@@ -78,11 +78,11 @@ def place_order():
         cur.close()
         return jsonify(change_info),201
 
-# Fills an order and creates a shipment request for a shipment with the state "ready"
-@app.route('/cancel_order',methods=['POST'])
+# Changes the state of an order to "cancelled"
+@app.route('/cancel_order',methods=['PUT'])
 def cancel_order():
     
-    if request.method == 'POST':
+    if request.method == 'PUT':
         data = request.get_json()
         orderNumber=data['orderNumber']
         
@@ -99,7 +99,7 @@ def cancel_order():
         cur.close()
         return jsonify(change_info),201
 
-# Retrieve all skis that have the state "available"
+# Retrieve a summary of ongoing production plans within a specified period
 @app.route('/get_plan_summary',methods=['GET'])
 def get_plan_summary():
     
