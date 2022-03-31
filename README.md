@@ -1,6 +1,6 @@
 # Project group 33
 
-Members: <br>
+**Members**: <br>
 Daniel and Sang
 
 
@@ -17,6 +17,9 @@ Daniel and Sang
 4.  In Postman you can add a body (JSON-format) with extra information as the input for some of different functions (some functions does not require this). <br>
 ### Modules
 **IMPORTANT** `⬇`
+
+![env_activation.png](./images/env_activation.png)
+
 > Remember to **activate** your environment before installing the modules so that the environment gets the required modules<br>
 
 ![images/python_env.png](./images/python_env.png)
