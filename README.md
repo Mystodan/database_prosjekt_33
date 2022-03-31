@@ -14,7 +14,7 @@ URL:        http://127.0.0.1:5000/get_model <br>
             Body (raw, JSON): <br>
 
     {  // optional
-    "model": "active"  
+    "model": "active",  
     "length": "152"
     } 
 
