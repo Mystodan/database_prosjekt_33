@@ -83,7 +83,6 @@ def fill_order():
         data = request.get_json()
         transporterID=data['transporterID']
         orderNumber=data['orderNumber']
-        customerID=data['customerID']
         shippingAddress=data['shippingAddress']
         pickUpDate=data['pickUpDate']
         
@@ -91,7 +90,7 @@ def fill_order():
 
         change_state = cur.execute("UPDATE `orders` SET `state`='shipped' WHERE `orderNumber`=%s AND `state`='ready'", (orderNumber,))
 
-        add_shipment = cur.execute("INSERT INTO `shipment` (`transporterID`, `orderNumber`, `customerID`, `shippingAddress`, `pickUpDate`, `state`) VALUES (%s, %s, %s, %s, %s, 'ready')", ((transporterID,), (orderNumber,), (customerID,), (shippingAddress,), (pickUpDate,)))
+        add_shipment = cur.execute("INSERT INTO `shipment` (`transporterID`, `orderNumber`, `shippingAddress`, `pickUpDate`, `state`) VALUES (%s, %s, %s, %s, 'ready')", ((transporterID,), (orderNumber,), (shippingAddress,), (pickUpDate,)))
         mysql.connection.commit()
 
         change_info = cur.execute("SELECT * FROM `orders`")

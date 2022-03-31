@@ -64,10 +64,11 @@ def place_order():
     if request.method == 'POST':
         data = request.get_json()
         quantity=data['quantity']
+        customerID=data['customerID']
         
         cur=mysql.connection.cursor()
 
-        add_order = cur.execute("INSERT INTO `orders` (`quantity`, `state`) VALUES (%s, 'new')", [(quantity,)])
+        add_order = cur.execute("INSERT INTO `orders` (`quantity`, `state`, `customerID`) VALUES (%s, 'new', %s)", [(quantity,), (customerID,)])
         mysql.connection.commit()
 
         change_info = cur.execute("SELECT * FROM `orders`")
