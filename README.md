@@ -120,9 +120,32 @@ URL:        http://127.0.0.1:5000/get_state  <br>
     } 
 >Output:     Retrieve a list of all orders with the state equal to "new". <br>
 
+METHOD:     **PUT** <br>
+URL:        http://127.0.0.1:5000/change_state_open <br>
+            Body (raw, JSON): 
 
+    {  
+    "orderNumber": "1"
+    } 
+>Output:    Changes the "state" of an order from "new" to "open"
 
+METHOD:     **PUT** <br>
+URL:        http://127.0.0.1:5000/change_state_available <br>
+            Body (raw, JSON): 
 
+    {  
+    "orderNumber": "1"
+    } 
+>Output:    Changes the "state" of an order from "open" to "available"
 
+METHOD:     **POST** <br>
+URL:        http://127.0.0.1:5000/fill_order <br>
+            Body (raw, JSON): 
 
-
+    {
+    "transporterID": "2",
+    "orderNumber": "3",
+    "shippingAddress": "Bokveien 5",
+    "pickUpDate": "29-04-2022"
+    }
+>Output:    Fills an order and creates a shipment request for a shipment
