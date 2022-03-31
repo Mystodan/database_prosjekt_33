@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 31. Mar, 2022 12:27 PM
+-- Generation Time: 31. Mar, 2022 13:13 PM
 -- Tjener-versjon: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -94,12 +94,12 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`orderNumber`, `quantity`, `totalPrice`, `state`, `date`) VALUES
-(1, 10, 1000, 'new', '2022-03-31 10:27:07'),
-(2, 20, 2000, 'open', '2022-03-31 10:27:07'),
-(3, 30, 3000, 'ready', '2022-03-31 10:27:07'),
-(4, 40, 4000, 'available', '2022-03-31 10:27:07'),
-(5, 50, 5000, 'cancelled', '2022-03-31 10:27:07'),
-(6, 60, 6000, 'shipped', '2022-03-31 10:27:07');
+(1, 10, 1000, 'new', '2022-03-31 11:13:21'),
+(2, 20, 2000, 'open', '2022-03-31 11:13:21'),
+(3, 30, 3000, 'ready', '2022-03-31 11:13:21'),
+(4, 40, 4000, 'available', '2022-03-31 11:13:21'),
+(5, 50, 5000, 'cancelled', '2022-03-31 11:13:21'),
+(6, 60, 6000, 'shipped', '2022-03-31 11:13:21');
 
 -- --------------------------------------------------------
 
@@ -230,10 +230,7 @@ CREATE TABLE `transporter` (
 INSERT INTO `transporter` (`transporterID`, `name`) VALUES
 (1, 'Posten'),
 (2, 'PostNord'),
-(3, 'Bring'),
-(4, 'Posten'),
-(5, 'PostNord'),
-(6, 'Bring');
+(3, 'Bring');
 
 --
 -- Indexes for dumped tables
@@ -367,7 +364,7 @@ ALTER TABLE `teamskier`
 -- AUTO_INCREMENT for table `transporter`
 --
 ALTER TABLE `transporter`
-  MODIFY `transporterID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `transporterID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Begrensninger for dumpede tabeller

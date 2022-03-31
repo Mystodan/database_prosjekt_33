@@ -3,11 +3,6 @@ INSERT INTO `transporter` (`name`) VALUES
 ("PostNord"),
 ("Bring");
 
-INSERT INTO `transporter` (`name`) VALUES
-("Posten"),
-("PostNord"),
-("Bring");
-
 INSERT INTO `skitype` (`type`, `model`, `description`, `historical`, `url`, `msrp`) VALUES
 ( 'classic', 'activePro', 'Classic Active Pro series skii made for athletes that wants to get their socks wet!', NULL, 'https://www.xxl.no/', 1000),
 ( 'classic', 'active', 'Classic Active series skii made for athletes that wants to get their socks dry!', NULL, 'https://www.xxl.no/', 800),

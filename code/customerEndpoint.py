@@ -118,5 +118,26 @@ def get_plan_summary():
         cur.close()
         return jsonify(orders),201
 
+# Deletes an order with a specified "orderNumber"
+@app.route('/delete_order',methods=['DELETE'])
+def delete_order():
+    
+    if request.method == 'DELETE':
+        data = request.get_json()
+        orderNumber=data['orderNumber']
+        
+        cur=mysql.connection.cursor()
+
+        delete_order = cur.execute("DELETE FROM `orders` WHERE `orderNumber`=%s", [(orderNumber,)])
+        mysql.connection.commit()
+
+        change_info = cur.execute("SELECT * FROM `orders`")
+
+        if change_info > 0:
+            change_info = cur.fetchall()
+
+        cur.close()
+        return jsonify(change_info),201
+
 if __name__ == '__main__':
     app.run(debug=True)

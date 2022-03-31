@@ -31,10 +31,10 @@ def get_available():
         return jsonify(orders),201
 
 # Change the info of a newly made ski type
-@app.route('/change_info',methods=['POST'])
+@app.route('/change_info',methods=['PUT'])
 def change_info():
     
-    if request.method == 'POST':
+    if request.method == 'PUT':
         data = request.get_json()
         typeID=data['typeID']
         info=data['info']
@@ -66,6 +66,29 @@ def cancel_order():
         mysql.connection.commit()
 
         change_info = cur.execute("SELECT * FROM `orders`")
+
+        if change_info > 0:
+            change_info = cur.fetchall()
+
+        cur.close()
+        return jsonify(change_info),201
+
+# Creates a new record for newly produced skis
+@app.route('/create_record',methods=['POST'])
+def create_record():
+    
+    if request.method == 'POST':
+        data = request.get_json()
+        typeID=data['typeID']
+        length=data['length']
+        reserved=data['reserved']
+        
+        cur=mysql.connection.cursor()
+
+        add_order = cur.execute("INSERT INTO `ski` (`typeID`, `length`, `reserved`) VALUES (%s, %s, %s)", [(typeID,),(length,),(reserved,)])
+        mysql.connection.commit()
+
+        change_info = cur.execute("SELECT * FROM `ski`")
 
         if change_info > 0:
             change_info = cur.fetchall()

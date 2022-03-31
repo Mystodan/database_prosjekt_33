@@ -34,10 +34,10 @@ def get_state():
         return jsonify(orders),201
 
 # Change the state of an order from "new" to "open"
-@app.route('/change_state_open',methods=['POST'])
+@app.route('/change_state_open',methods=['PUT'])
 def change_state_open():
     
-    if request.method == 'POST':
+    if request.method == 'PUT':
         data = request.get_json()
         orderNumber=data['orderNumber']
         
@@ -55,10 +55,10 @@ def change_state_open():
         return jsonify(change_info),201
 
 # Change the state of an order from "open" to "available"
-@app.route('/change_state_available',methods=['POST'])
+@app.route('/change_state_available',methods=['PUT'])
 def change_state_available():
     
-    if request.method == 'POST':
+    if request.method == 'PUT':
         data = request.get_json()
         orderNumber=data['orderNumber']
         

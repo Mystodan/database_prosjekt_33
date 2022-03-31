@@ -31,10 +31,10 @@ def get_ready():
         return jsonify(orders),201
 
 # Change the state of a shipment when it is picked up
-@app.route('/picked_up',methods=['POST'])
+@app.route('/picked_up',methods=['PUT'])
 def picked_up():
     
-    if request.method == 'POST':
+    if request.method == 'PUT':
         data = request.get_json()
         shipmentNumber=data['shipmentNumber']
         
