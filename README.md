@@ -31,6 +31,7 @@ Use `pip install` and then the required module name
 > for example: `pip install flask`
 
 ## How to use...
+![activateXAMPP.png](./images/activateXAMPP.png)
 0.  Activate Apache and MySQL in XAMPP.
     - Use http://localhost/phpmyadmin/ to access phpMyAdmin
 1.  Download the SQL file and import it into phpMyAdmin. <br>
@@ -43,12 +44,17 @@ Use `pip install` and then the required module name
 
 ### Importing databases
 ![navigatePHP.png](./images/navigatePHP.png)
+
 > Navigate to the phpMyAdmin button on the dashboard tabs 
-
+<br>
+<br>
 ![navigateImport.png](./images/navigateImport.png)
-> Navigate to the import button on the phpMyAdmin tabs and press the choose file option
 
+> Navigate to the import button on the phpMyAdmin tabs and press the choose file option
+<br>
+<br>
 ![SQLpick.png](./images/SQLpick.png)
+
 > Navigate to \project-group-33\data and input the database
 
 
