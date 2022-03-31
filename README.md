@@ -13,7 +13,7 @@ METHOD:     **GET** (*optional parameters*) <br>
 URL:        http://127.0.0.1:5000/get_model <br>
             Body (raw, JSON): <br>
 
-    {  # optional
+    {  // optional
     "model": "active"  
     "length": "152"
     } 
@@ -39,7 +39,7 @@ METHOD:     **GET** (*optional parameters*) <br>
 URL:        http://127.0.0.1:5000/get_orders <br>
             Body (raw, JSON): 
             
-    { # optional
+    { // optional
     "customerID": "2", 
     "since": "22-03-13"
     } 
