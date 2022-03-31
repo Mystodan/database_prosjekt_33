@@ -31,7 +31,8 @@ Use `pip install` and then the required module name
 > for example: `pip install flask`
 
 ## How to use...
-![activateXAMPP.png](./images/activateXAMPP.png)
+
+
 0.  Activate Apache and MySQL in XAMPP.
     - Use http://localhost/phpmyadmin/ to access phpMyAdmin
 1.  Download the SQL file and import it into phpMyAdmin. <br>
@@ -42,6 +43,8 @@ Use `pip install` and then the required module name
     - check out **required modules**`⬆` for setting up the environment
 4.  In Postman you can add a body (JSON-format) with extra information as the input for some of different functions (some functions does not require this). <br>
 
+![activateXAMPP.png](./images/activateXAMPP.png)<br>
+(Heres how to activate Apache and MySQL)
 ### Importing databases
 ![navigatePHP.png](./images/navigatePHP.png)
 
