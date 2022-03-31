@@ -10,10 +10,6 @@ app.config['MYSQL_DB']="ski_equipment_manufacturer"
 
 mysql = MySQL(app)
 
-@app.route('/')
-def index():
-    return "Hello"
-
 # Retrieve a list of orders that a customer has made (with an optional since filter)
 @app.route('/get_orders',methods=['GET'])
 def get_orders():

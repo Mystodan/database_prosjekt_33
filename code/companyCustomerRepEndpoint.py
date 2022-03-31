@@ -10,10 +10,6 @@ app.config['MYSQL_DB']="ski_equipment_manufacturer"
 
 mysql = MySQL(app)
 
-@app.route('/')
-def index():
-    return "Hello"
-
 # Retrieve all orders that have the specified value as their "state"
 @app.route('/get_state',methods=['GET'])
 def get_state():

@@ -10,10 +10,6 @@ app.config['MYSQL_DB']="ski_equipment_manufacturer"
 
 mysql = MySQL(app)
 
-@app.route('/')
-def index():
-    return "Hello"
-
 # Fills an production plan and adds it to the database
 @app.route('/fill_plan',methods=['POST'])
 def fill_plan():

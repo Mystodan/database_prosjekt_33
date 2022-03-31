@@ -10,10 +10,6 @@ app.config['MYSQL_DB']="ski_equipment_manufacturer"
 
 mysql = MySQL(app)
 
-@app.route('/')
-def index():
-    return "Hello"
-
 # Retrieve all skis that have the state "available"
 @app.route('/get_available',methods=['GET'])
 def get_available():
