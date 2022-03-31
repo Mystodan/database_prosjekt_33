@@ -6,7 +6,7 @@ Daniel and Sang
 ### Dependencies 
 Here are the dependencies for the project:
 - <a href = https://www.postman.com/downloads/> Postman </a> for interracting with our database
-- <a href = https://www.apachefriends.org/download.html > XXAMP </a> which includes *phpMyAdmin*
+- <a href = https://www.apachefriends.org/download.html > XAMPP </a> which includes *phpMyAdmin*
 - <a href = https://www.python.org/downloads/> Python </a> or the <a href = https://www.anaconda.com/products/distribution>Anaconda package</a> which includes python
 - An IDE, we used <a href = https://code.visualstudio.com/download> VSCODE </a>
 - <a href = https://git-scm.com/downloads> Git bash package</a>
