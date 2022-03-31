@@ -89,7 +89,7 @@ URL:        http://127.0.0.1:5000/get_plan_summary <br>
 >Output:     Get the production plans that are ongoing between the specified startDate and endDate <br>
 
 METHOD:     **POST** <br>
-URL:        http://127.0.0.1:5000/cancel_order <br>
+URL:        http://127.0.0.1:5000/delete_order <br>
             Body (raw, JSON): 
             
     {  
