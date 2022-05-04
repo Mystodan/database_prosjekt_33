@@ -2,6 +2,12 @@ DROP DATABASE if EXISTS ski_equipment_manufacturer;
 CREATE DATABASE IF NOT EXISTS ski_equipment_manufacturer COLLATE = utf8_danish_ci;
 USE ski_equipment_manufacturer;
 
+CREATE TABLE `Authentication` (
+`Auth_Token` varchar(20) NOT NULL PRIMARY KEY,
+`password` varchar(200) DEFAULT "",
+`Endpoint` enum('customer_rep','storekeeper','production_planner','customer','transporter','public') 
+);
+
 CREATE TABLE `skiType` (
   `typeID` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `type` enum('classic', 'skate', 'doublePole') NOT NULL,

@@ -1,3 +1,13 @@
+
+INSERT INTO `Authentication` (`Auth_token`, `password`, `Endpoint`) VALUES
+("Public","", 'public' ),
+("Transporter","", 'transporter' ),
+("Customer","", 'customer' ),
+("Prod_planner","admin", 'production_planner' ),
+("Storekeeper","admin", 'storekeeper' ),
+("Customer_rep","admin", 'customer_rep' );
+
+
 INSERT INTO `transporter` (`name`) VALUES
 ("Posten"),
 ("PostNord"),
