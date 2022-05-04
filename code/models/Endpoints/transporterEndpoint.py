@@ -9,7 +9,7 @@ class Transporter ():
   def Route(app,mysql):
     # Retrieve all orders that have the state "ready"
     @app.route('/get_ready',methods=['GET'])
-    def get_ready():
+    def transporter_get_ready():
         
         if request.method == 'GET':
             
@@ -26,7 +26,7 @@ class Transporter ():
 
     # Change the state of a shipment when it is picked up
     @app.route('/picked_up',methods=['PUT'])
-    def picked_up():
+    def transporter_picked_up():
         
         if request.method == 'PUT':
             data = request.get_json()

@@ -9,7 +9,7 @@ class Public ():
   def Route(app,mysql):
     # Retrieve all ski types or all skis of a specified model.
     @app.route('/get_model',methods=['GET'])
-    def get_model():
+    def public_get_model():
       if request.method == 'GET':
           data = request.get_data()
           order = "SELECT skitype.*, ski.length FROM `skitype`, `ski`"

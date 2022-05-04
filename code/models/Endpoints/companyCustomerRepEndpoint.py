@@ -9,7 +9,7 @@ class CustomerRep ():
   def Route(app,mysql):
     # Retrieve all orders that have the specified value as their "state"
     @app.route('/get_state',methods=['GET'])
-    def get_state():
+    def customer_rep_get_state():
         if request.method == 'GET':
             data = request.get_json()
             state=data['state']
@@ -26,7 +26,7 @@ class CustomerRep ():
 
     # Change the state of an order from "new" to "open"
     @app.route('/change_state_open',methods=['PUT'])
-    def change_state_open():
+    def customer_rep_change_state_open():
         
         if request.method == 'PUT':
             data = request.get_json()
@@ -47,7 +47,7 @@ class CustomerRep ():
 
     # Change the state of an order from "open" to "available"
     @app.route('/change_state_available',methods=['PUT'])
-    def change_state_available():
+    def customer_rep_change_state_available():
         
         if request.method == 'PUT':
             data = request.get_json()
@@ -68,7 +68,7 @@ class CustomerRep ():
 
     # Fills an order and creates a shipment request for a shipment
     @app.route('/fill_order',methods=['POST'])
-    def fill_order():
+    def customer_rep_fill_order():
         
         if request.method == 'POST':
             data = request.get_json()

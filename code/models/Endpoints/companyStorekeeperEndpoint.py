@@ -9,7 +9,7 @@ class StoreKeeper ():
   def Route(app,mysql):
     # Retrieve all skis that have the state "available"
     @app.route('/get_available',methods=['GET'])
-    def get_available():
+    def company_store_get_available():
         
         if request.method == 'GET':
             
@@ -25,7 +25,7 @@ class StoreKeeper ():
 
     # Change the info of a newly made ski type
     @app.route('/change_info',methods=['PUT'])
-    def change_info():
+    def company_store_change_info():
         
         if request.method == 'PUT':
             data = request.get_json()
@@ -47,7 +47,7 @@ class StoreKeeper ():
 
     # Changes the state of an order to from "available" to "ready"
     @app.route('/change_state_ready',methods=['PUT'])
-    def cancel_order():
+    def company_store_cancel_order():
         
         if request.method == 'PUT':
             data = request.get_json()
@@ -68,7 +68,7 @@ class StoreKeeper ():
 
     # Creates a new record for newly produced skis
     @app.route('/create_record',methods=['POST'])
-    def create_record():
+    def company_store_create_record():
         
         if request.method == 'POST':
             data = request.get_json()

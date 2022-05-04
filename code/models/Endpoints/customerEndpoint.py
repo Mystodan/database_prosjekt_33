@@ -9,7 +9,7 @@ class Customer ():
   def Route(app,mysql):
     # Retrieve a list of orders that a customer has made (with an optional since filter)
     @app.route('/get_orders',methods=['GET'])
-    def get_orders():
+    def customer_get_orders():
         
         if request.method == 'GET':
             data = request.get_json()
@@ -35,7 +35,7 @@ class Customer ():
 
     # Retrieve all information about an order and its state
     @app.route('/get_order_info',methods=['GET'])
-    def get_order_info():
+    def customer_get_order_info():
         
         if request.method == 'GET':
             data = request.get_json()
@@ -54,7 +54,7 @@ class Customer ():
 
     # Places a new order with a specified quantity
     @app.route('/place_order',methods=['POST'])
-    def place_order():
+    def customer_place_order():
         
         if request.method == 'POST':
             data = request.get_json()
@@ -77,7 +77,7 @@ class Customer ():
 
     # Changes the state of an order to "cancelled"
     @app.route('/cancel_order',methods=['PUT'])
-    def cancel_order():
+    def customer_cancel_order():
         
         if request.method == 'PUT':
             data = request.get_json()
@@ -99,7 +99,7 @@ class Customer ():
 
     # Retrieve a summary of ongoing production plans within a specified period
     @app.route('/get_plan_summary',methods=['GET'])
-    def get_plan_summary():
+    def customer_get_plan_summary():
         
         if request.method == 'GET':
             data = request.get_json()
@@ -119,7 +119,7 @@ class Customer ():
 
     # Deletes an order with a specified "orderNumber"
     @app.route('/delete_order',methods=['DELETE'])
-    def delete_order():
+    def customer_delete_order():
         
         if request.method == 'DELETE':
             data = request.get_json()

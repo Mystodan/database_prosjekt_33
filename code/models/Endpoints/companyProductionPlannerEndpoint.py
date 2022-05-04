@@ -9,7 +9,7 @@ class ProductionPlanner ():
   def Route(app,mysql):
     # Fills an production plan and adds it to the database
     @app.route('/fill_plan',methods=['POST'])
-    def fill_plan():
+    def prod_plan_fill_plan():
         
         if request.method == 'POST':
             data = request.get_json()

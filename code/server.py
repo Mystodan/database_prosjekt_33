@@ -1,3 +1,4 @@
+from models.Endpoints.companyStorekeeperEndpoint import StoreKeeper
 from models.Endpoints.companyProductionPlannerEndpoint import ProductionPlanner
 from models.Endpoints.customerEndpoint import Customer
 from models.Endpoints.publicEndpoint import Public
@@ -19,6 +20,7 @@ setup.configureApp(app)
 authentication.Route(app, sql)
 CustomerRep.Route(app,sql)
 ProductionPlanner.Route(app,sql)
+StoreKeeper.Route(app,sql)
 # Customer
 Customer.Route(app,sql)
 Public.Route(app,sql)
