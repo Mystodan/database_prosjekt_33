@@ -9,35 +9,35 @@ class Public ():
   def Route(app,mysql):
     # Retrieve all ski types or all skis of a specified model.
     @app.route('/get_model',methods=['GET'])
-    def public_get_model():
-      if request.method == 'GET':
-          data = request.get_data()
-          order = "SELECT skitype.*, ski.length FROM `skitype`, `ski`"
-          noPar = False
-          cur=mysql.connection.cursor()
-          if len(data) > 0 : 
-            data = request.get_json()
-            print(len(data))
-            if len(data) > 0 :
-              model = data['model']
-              order = order + "WHERE skitype.model = %s"
-              exec = [(model,)]
-              if len(data) == 2 :
-                length = data['length']
-                order = order + " AND ski.length = %s"
-                exec = [(model,),(length,)]
-              orders = cur.execute(order, exec)
-            
-            else : noPar = True
-          else :
-            noPar = True
-          if noPar :
-            orders = cur.execute(order,)
-          if orders > 0:
-              orders = cur.fetchall()
+    def public_get_model(): return Public.get_model(mysql)
+   
+   
+  def get_model(mysql) :
+    if request.method == 'GET':
+      data = request.get_data()
+      order = "SELECT skitype.*, ski.length FROM `skitype`, `ski`"
+      cur=mysql.connection.cursor()
+      noParams = False
+      if data : 
+        data = request.get_json()
+        if data :
+          model = data['model']
+          order = order + "WHERE skitype.model = %s"
+          exec = [(model,)]
+          if len(data) == 2 :
+            length = data['length']
+            order = order + " AND ski.length = %s"
+            exec = [(model,),(length,)]
+          orders = cur.execute(order, exec)
+        
+        else : noParams = True
+      else :
+        noParams = True
+      if noParams :
+        orders = cur.execute(order,)
+      if orders > 0:
+          orders = cur.fetchall()
 
- 
-          retVal = isAppropriate (Public.endpoint , Public.want, (jsonify(orders),http.StatusCreated)) 
-          cur.close()
-          return retVal
+      cur.close()
+      return jsonify(orders),http.StatusOk
 

@@ -3,12 +3,13 @@ class constants(object):
   HTTP_METHODS = ['GET', 'HEAD', 'POST', 'PUT', 'DELETE', 'CONNECT', 'OPTIONS', 'TRACE', 'PATCH']
   
 class constantEndpoints(object):
-  ENDPOINT_EMPLOYEE     = "employee"
+  
   ENDPOINT_CUSTOMER     = "customer"
   ENDPOINT_TRANSPORTER  = "transporters"
   ENDPOINT_PUBLIC       = "public"
 
   class ENDPOINT_EMPLOYEE(object):  
+    ENDPOINT    = "employee"
     CUSTOMER_REPRESENTATIVE = "customer_rep"
     STOREKEEPER = "storekeeper"
     PRODUCTION_PLANNER = "production_planner"
@@ -37,3 +38,12 @@ class http(object):
   StatusOk = 200
   
   
+class error(object):
+  Endpoint = ": "
+  
+  Login_InvalidMethod = "LOGIN: Invalid method, Use "
+  Login_NotLoggedIn = ("LOGIN: Login as correct user first")
+  
+  Body_Invalid = "BODY: Invalid input"
+  
+  Query_Duplicate = "QUERY: Input already exists within database"

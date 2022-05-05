@@ -5,7 +5,7 @@ class user ():
   password = ""
   endpoint = ""
   def checkUser(t,p,e):
-    return user.token == t and user.password == p and user.endpoint 
+    return user.token == t and user.password == p and user.endpoint == e
   def setUser(inn_token="", inn_password="", inn_endpoint=""):
     user.token = inn_token
     user.password = inn_password
