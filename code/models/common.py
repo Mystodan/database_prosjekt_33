@@ -44,3 +44,4 @@ def handleInvalidMethod(func, method, sql) :
     return func(sql)
   else:
     return InvalidMethod(method)
+  

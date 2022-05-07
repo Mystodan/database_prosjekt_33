@@ -17,6 +17,7 @@ class setupInstance ():
   def setListener(app, compare):
     if compare == '__main__':
       app.run(debug=True)
+
   
     
   

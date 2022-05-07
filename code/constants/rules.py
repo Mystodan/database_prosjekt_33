@@ -1,2 +1,4 @@
+
 class rules(object):
-  haveToLogin = False
+  haveToLogin = True
+  hashUser = True

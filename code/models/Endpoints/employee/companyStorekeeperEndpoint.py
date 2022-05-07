@@ -38,8 +38,8 @@ class StoreKeeper ():
     # Creates a new record for newly produced skis
     @app.route(setPath('/create_record'),methods=setMethods())
     def company_store_create_record(): return PreprocessEndpoint(StoreKeeper,StoreKeeper.create_record, 'POST',mysql)
-            
           
+    
   def get_available(mysql) :
     cur=mysql.connection.cursor()
 
