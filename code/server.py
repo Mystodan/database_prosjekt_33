@@ -21,8 +21,8 @@ sql               = MySQL(app)
 setup             .configureApp(app)
 
 with app.app_context():
-  databaseUser.FlushAuth(sql)
-  databaseUser.DefineAllUsers()
+  databaseUser.FlushAuth(sql) # removes any leftover user if any
+  databaseUser.DefineAllUsers() # Adds all users
 
 # Route endpoints
 authentication    .Route(app,sql) # Authentication

@@ -1,4 +1,4 @@
 
 class rules(object):
-  haveToLogin = True
-  hashUser = True
+  SET_LOGIN = True
+  SET_HASH_USER = True

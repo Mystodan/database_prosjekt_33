@@ -73,7 +73,7 @@ class databaseUser():
   endpoint = ""
   def setUser(inn_token, inn_password, inn_endpoint):
     auth_user.defineAuthUser(inn_token, inn_password)
-    if rules.hashUser :
+    if rules.SET_HASH_USER :
       databaseUser.token, databaseUser.password, databaseUser.endpoint  = (auth_user.auth_hash,auth_user.auth_hash, inn_endpoint)
     else :
       databaseUser.token, databaseUser.password, databaseUser.endpoint  = (auth_user.auth_token,auth_user.auth_password, inn_endpoint)

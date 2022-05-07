@@ -34,7 +34,7 @@ def handleErr(response,error):
 
 def PreprocessEndpoint(endpoint, func, method,  sql):
   request.get_data()
-  if hasLoggedIn(endpoint.endpoint , endpoint.want) or (rules.haveToLogin is False):
+  if hasLoggedIn(endpoint.endpoint , endpoint.want) or (rules.SET_LOGIN is False):
     return handleInvalidMethod(func, method, sql)
   else:
     return preLogin(endpoint.want)

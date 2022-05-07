@@ -28,7 +28,7 @@ def HandleAuthentication(cur):
   if hasPasw :
     password = data['password']
   _t,_p = token,password
-  if rules.hashUser:
+  if rules.SET_HASH_USER:
     userHash = auth_user.getHash(token, password)
     _t,_p = userHash, userHash
   sql = 'SELECT * FROM `authentication` WHERE `authentication`.`Auth_Token` = "'+_t+'" AND `authentication`.`password` ="'+_p+'"'
