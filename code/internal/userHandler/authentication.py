@@ -1,6 +1,6 @@
 from flask import Response, request
 from constants.REST import http, constants
-from models.common import InvalidMethod
+from internal.common import InvalidMethod
 from .classes import user
 from .funcs import HandleAuthentication, invokeEndpoint
 

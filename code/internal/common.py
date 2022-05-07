@@ -1,7 +1,7 @@
 from pickle import FALSE
 from flask_mysqldb import MySQL
 from flask import Response, request
-from constants.REST import constants, error, http, constantEndpoints as ep
+from constants.REST import constants, error , http, constantEndpoints as ep
 from constants.rules import rules
 EP = ep.ENDPOINT_EMPLOYEE
 

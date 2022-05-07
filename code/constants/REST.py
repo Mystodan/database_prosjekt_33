@@ -39,11 +39,13 @@ class http(object):
   
   
 class error(object):
-  Endpoint = ": "
-  
   Login_InvalidMethod = "LOGIN: Invalid method, Use "
+  
+  Endpoint = ": "
+
   Login_NotLoggedIn = ("LOGIN: Login as correct user first")
   
   Body_Invalid = "BODY: Invalid input"
   
   Query_Duplicate = "QUERY: Input already exists within database"
+  
