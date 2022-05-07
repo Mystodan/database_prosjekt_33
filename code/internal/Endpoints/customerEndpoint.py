@@ -1,6 +1,12 @@
-from flask import request, jsonify
-from constants.REST import http,constantEndpoints as ep
-from models.common import isAppropriate
+from flask import (
+  request, 
+  jsonify
+  )
+from constants.REST import (
+    http,
+    constantEndpoints as ep
+  )
+from internal.common import isAppropriate
 
 
 class Customer ():

@@ -1,13 +1,13 @@
 import random
-from models.Endpoints.employee.companyCustomerRepEndpoint import CustomerRep
-from models.Endpoints.employee.companyStorekeeperEndpoint import StoreKeeper
-from models.Endpoints.employee.companyProductionPlannerEndpoint import ProductionPlanner
-from models.Endpoints.customerEndpoint import Customer
-from models.Endpoints.publicEndpoint import Public
-from models.Endpoints.transporterEndpoint import Transporter
-from models.setup import setupInstance
-from models.userHandler.authentication import authentication
-from models.userHandler.classes import databaseUser, auth_user, AllUsers
+from internal.Endpoints.employee.companyCustomerRepEndpoint import CustomerRep
+from internal.Endpoints.employee.companyStorekeeperEndpoint import StoreKeeper
+from internal.Endpoints.employee.companyProductionPlannerEndpoint import ProductionPlanner
+from internal.Endpoints.customerEndpoint import Customer
+from internal.Endpoints.publicEndpoint import Public
+from internal.Endpoints.transporterEndpoint import Transporter
+from internal.setup import setupInstance
+from internal.userHandler.authentication import authentication
+from internal.userHandler.classes import databaseUser, auth_user, AllUsers
 from flask_mysqldb import MySQL
 
 # set Random Seed

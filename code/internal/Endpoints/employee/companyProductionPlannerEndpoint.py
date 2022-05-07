@@ -8,7 +8,7 @@ from constants.REST import (
   http, 
   constantEndpoints as ep
   )
-from models.common import (
+from internal.common import (
   setMethods, 
   formatPath, 
   handleErr,
