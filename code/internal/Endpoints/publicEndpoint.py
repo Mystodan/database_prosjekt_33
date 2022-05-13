@@ -4,9 +4,20 @@ from constants.REST import http,constantEndpoints as ep
 
 
 class Public ():
+  """class handler for Public
+  """
   want = ep.ENDPOINT_PUBLIC
   endpoint = ""
   def Route(app,mysql):
+    """Routes Public Endpoint
+
+    Args:
+        app (Flask): Application to route enpoints to
+        mysql (_type_): Database to get data from
+
+    Returns:
+        _type_: body and status code
+    """
     # Retrieve all ski types or all skis of a specified model.
     @app.route('/get_model',methods=['GET'])
     def public_get_model(): return Public.get_model(mysql)

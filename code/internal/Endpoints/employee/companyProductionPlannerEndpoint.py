@@ -16,12 +16,23 @@ from internal.common import (
   )
 
 class ProductionPlanner ():
+  """class handler for Production Planner Endpoint
+  """
   want = ep.ENDPOINT_EMPLOYEE.PRODUCTION_PLANNER
   endpoint = ""
   def setPath (action) :
     return  formatPath(ep.ENDPOINT_EMPLOYEE.ENDPOINT, action) 
   
   def Route(app,sql):
+    """Routes Production Planner Endpoint
+
+    Args:
+        app (Flask): Application to route enpoints to
+        mysql (_type_): Database to get data from
+
+    Returns:
+        _type_: body and status code
+    """
     setPath = ProductionPlanner.setPath
     
     # Fills an production plan and adds it to the database
