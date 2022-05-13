@@ -1,16 +1,31 @@
 from flask import request, jsonify
 from constants.REST import http,constantEndpoints as ep
-from internal.common import isAppropriate
+from internal.common import PreprocessEndpoint,setMethods
 
 
 class Transporter ():
   want = ep.ENDPOINT_TRANSPORTER
   endpoint = ""
   def Route(app,mysql):
+    """Routes Transporter Endpoint
+
+    Args:
+        app (Flask): Application to route enpoints to
+        mysql (_type_): Database to get data from
+
+    Returns:
+        _type_: body and status code
+    """
     # Retrieve all orders that have the state "ready"
-    @app.route('/get_ready',methods=['GET'])
-    def transporter_get_ready():
-        
+    @app.route('/get_ready',methods=setMethods())
+    def transporter_get_ready(): return PreprocessEndpoint(Transporter,Transporter.get_ready, 'GET', mysql)
+
+    # Change the state of a shipment when it is picked up
+    @app.route('/picked_up',methods=setMethods())
+    def transporter_picked_up(): return PreprocessEndpoint(Transporter,Transporter.picked_up, 'PUT', mysql)
+  
+  
+  def get_ready(mysql) :      
         if request.method == 'GET':
             
             cur=mysql.connection.cursor()
@@ -20,14 +35,10 @@ class Transporter ():
             if orders >0:
                 orders = cur.fetchall()
 
-            retVal = isAppropriate (Transporter.endpoint , Transporter.want, (jsonify(orders),http.StatusCreated)) 
             cur.close()
-            return retVal
-
-    # Change the state of a shipment when it is picked up
-    @app.route('/picked_up',methods=['PUT'])
-    def transporter_picked_up():
-        
+            return jsonify(orders),http.StatusCreated
+          
+  def picked_up(mysql):
         if request.method == 'PUT':
             data = request.get_json()
             shipmentNumber=data['shipmentNumber']
@@ -42,6 +53,5 @@ class Transporter ():
             if change_info > 0:
                 change_info = cur.fetchall()
 
-            retVal = isAppropriate (Transporter.endpoint , Transporter.want, (jsonify(change_info),http.StatusCreated)) 
             cur.close()
-            return retVal
+            return jsonify(change_info),http.StatusCreated

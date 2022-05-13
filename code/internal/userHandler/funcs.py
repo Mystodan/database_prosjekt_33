@@ -6,7 +6,7 @@ from internal.Endpoints.publicEndpoint import Public
 from internal.Endpoints.transporterEndpoint import Transporter
 from constants.REST import constantEndpoints as ep
 from constants.rules import rules
-from .classes import auth_user, user
+from .classes import auth_user
 from flask import request
 
 def contains (want, list):

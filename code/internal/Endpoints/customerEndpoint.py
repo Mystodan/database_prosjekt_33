@@ -10,9 +10,20 @@ from internal.common import isAppropriate
 
 
 class Customer ():
+  """class handler for Customer Endpoint
+  """
   want = ep.ENDPOINT_CUSTOMER
   endpoint = ""
   def Route(app,mysql):
+    """Routes Customer Endpoint
+
+    Args:
+        app (Flask): Application to route enpoints to
+        mysql (_type_): Database to get data from
+
+    Returns:
+        _type_: body and status code
+    """
     # Retrieve a list of orders that a customer has made (with an optional since filter)
     @app.route('/get_orders',methods=['GET'])
     def customer_get_orders():

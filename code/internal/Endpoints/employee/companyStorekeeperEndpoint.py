@@ -15,12 +15,23 @@ from internal.common import (
   )
 
 class StoreKeeper ():
+  """class handler for Store Keeper Endpoint
+  """
   want = ep.ENDPOINT_EMPLOYEE.STOREKEEPER
   endpoint = ""
   def setPath (action) :
     return  formatPath(ep.ENDPOINT_EMPLOYEE.ENDPOINT, action) 
   
   def Route(app,mysql):
+    """Routes Store Keeper Endpoint
+
+    Args:
+        app (Flask): Application to route enpoints to
+        mysql (_type_): Database to get data from
+
+    Returns:
+        _type_: body and status code
+    """
     setPath = StoreKeeper.setPath
     
     # Retrieve all skis that have the state "available"

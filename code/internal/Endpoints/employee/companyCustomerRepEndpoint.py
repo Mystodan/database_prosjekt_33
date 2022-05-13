@@ -15,12 +15,23 @@ from internal.common import (
   )
 
 class CustomerRep ():
+  """class handler for Production Customer Represantative Endpoint
+  """
   want = [ep.ENDPOINT_EMPLOYEE.CUSTOMER_REPRESENTATIVE]
   endpoint = ""
   def setPath (action) :
     return  formatPath(ep.ENDPOINT_EMPLOYEE.ENDPOINT, action) 
 
   def Route(app,sql):
+    """Routes Customer Represantative Endpoint
+
+    Args:
+        app (Flask): Application to route enpoints to
+        mysql (_type_): Database to get data from
+
+    Returns:
+        _type_: body and status code
+    """
     setPath = CustomerRep.setPath
 
     # Retrieve all orders that have the specified value as their "state"

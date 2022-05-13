@@ -5,6 +5,8 @@ from constants.credentials import Hash
 AllUsers = []
 
 class auth_user ():
+  """class handler for authenticating user Endpoint
+  """
   auth_users = []
   auth_token = ""
   auth_password = ""
@@ -42,6 +44,8 @@ class auth_user ():
       
 
 class user ():
+  """class handler for local user Endpoint
+  """
   token = ""
   password = ""
   endpoint = ""
@@ -67,6 +71,8 @@ class user ():
       }
   
 class databaseUser():
+  """class handler for database user Endpoint
+  """
   sql = MySQL()
   token = ""
   password = ""
