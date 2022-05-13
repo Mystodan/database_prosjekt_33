@@ -5,7 +5,7 @@ class constants(object):
 class constantEndpoints(object):
   
   ENDPOINT_CUSTOMER     = "customer"
-  ENDPOINT_TRANSPORTER  = "transporters"
+  ENDPOINT_TRANSPORTER  = "transporter"
   ENDPOINT_PUBLIC       = "public"
 
   class ENDPOINT_EMPLOYEE(object):  

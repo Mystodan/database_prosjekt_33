@@ -1,10 +1,11 @@
 from flask import request, jsonify
+from internal.common import setMethods, InvalidMethod, contains
 from constants.REST import http,constantEndpoints as ep
 
 
 
 class Public ():
-  """class handler for Public
+  """class handler for Public Endpoint
   """
   want = ep.ENDPOINT_PUBLIC
   endpoint = ""
@@ -19,17 +20,20 @@ class Public ():
         _type_: body and status code
     """
     # Retrieve all ski types or all skis of a specified model.
-    @app.route('/get_model',methods=['GET'])
+    @app.route('/get_model',methods=setMethods())
     def public_get_model(): return Public.get_model(mysql)
    
-   
+# functions which retrieves all ski types or all skis of a specified model.  
   def get_model(mysql) :
-    if request.method == 'GET':
+    wantedMethod = 'GET'
+    if request.method == wantedMethod:
       data = request.get_data()
       order = "SELECT skitype.*, ski.length FROM `skitype`, `ski`"
       cur=mysql.connection.cursor()
       noParams = False
-      if data : 
+      t = data.replace(b'\r\n',b'')
+      if contains(b'{', data) and contains(b'}', data): # set to ignore all other input than JSON
+        print(t)
         data = request.get_json()
         if data :
           model = data['model']
@@ -51,4 +55,4 @@ class Public ():
 
       cur.close()
       return jsonify(orders),http.StatusOk
-
+    else: return InvalidMethod(wantedMethod)

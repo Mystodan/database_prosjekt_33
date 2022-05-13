@@ -4,6 +4,8 @@ from internal.common import PreprocessEndpoint,setMethods
 
 
 class Transporter ():
+  """class handler for Transporter Endpoint
+  """
   want = ep.ENDPOINT_TRANSPORTER
   endpoint = ""
   def Route(app,mysql):
@@ -25,33 +27,30 @@ class Transporter ():
     def transporter_picked_up(): return PreprocessEndpoint(Transporter,Transporter.picked_up, 'PUT', mysql)
   
   
-  def get_ready(mysql) :      
-        if request.method == 'GET':
-            
-            cur=mysql.connection.cursor()
+  def get_ready(mysql) :         
+    cur=mysql.connection.cursor()
 
-            orders = cur.execute("SELECT * FROM `orders` WHERE `state`= 'ready'")
+    orders = cur.execute("SELECT * FROM `orders` WHERE `state`= 'ready'")
 
-            if orders >0:
-                orders = cur.fetchall()
+    if orders >0:
+        orders = cur.fetchall()
 
-            cur.close()
-            return jsonify(orders),http.StatusCreated
+    cur.close()
+    return jsonify(orders),http.StatusCreated
           
   def picked_up(mysql):
-        if request.method == 'PUT':
-            data = request.get_json()
-            shipmentNumber=data['shipmentNumber']
-            
-            cur=mysql.connection.cursor()
+    data = request.get_json()
+    shipmentNumber=data['shipmentNumber']
+    
+    cur=mysql.connection.cursor()
 
-            change_state = cur.execute("UPDATE `shipment` SET `state`='shipped' WHERE `shipmentNumber`=%s", [(shipmentNumber),])
-            mysql.connection.commit()
+    change_state = cur.execute("UPDATE `shipment` SET `state`='shipped' WHERE `shipmentNumber`=%s", [(shipmentNumber),])
+    mysql.connection.commit()
 
-            change_info = cur.execute("SELECT * FROM `shipment`")
+    change_info = cur.execute("SELECT * FROM `shipment`")
 
-            if change_info > 0:
-                change_info = cur.fetchall()
+    if change_info > 0:
+        change_info = cur.fetchall()
 
-            cur.close()
-            return jsonify(change_info),http.StatusCreated
+    cur.close()
+    return jsonify(change_info),http.StatusCreated

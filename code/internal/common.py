@@ -5,10 +5,23 @@ from constants.REST import constants, error , http, constantEndpoints as ep
 from constants.rules import rules
 EP = ep.ENDPOINT_EMPLOYEE
 
-def getSql ( inn):
-  return MySQL(inn) 
 
-def hasLoggedIn(inn , want):
+def contains (want, list):
+  """Checks if list contains want
+
+  Args:
+      want (any): a variable that is contained within list
+      list (any list): a list which contains values
+
+  Returns:
+      bool: state if want is found in list
+  """
+  if want in list :
+    return True
+  return False
+
+
+def hasLoggedIn(inn , want): # checks if inn is equal to want
   return  inn == want
 
 # DEPRECATED
@@ -33,11 +46,13 @@ def handleErr(response,error):
   return Response(response, status = error)
 
 def PreprocessEndpoint(endpoint, func, method,  sql):
-  request.get_data()
-  if hasLoggedIn(endpoint.endpoint , endpoint.want) or (rules.SET_LOGIN is False):
-    return handleInvalidMethod(func, method, sql)
-  else:
-    return preLogin(endpoint.want)
+  data = request.get_data()
+  if contains(b'{', data) and contains(b'}', data):
+    if hasLoggedIn(endpoint.endpoint , endpoint.want) or (rules.SET_LOGIN is False):
+      return handleInvalidMethod(func, method, sql)
+    else:
+      return preLogin(endpoint.want)
+  
   
 def handleInvalidMethod(func, method, sql) :
   if request.method == method:

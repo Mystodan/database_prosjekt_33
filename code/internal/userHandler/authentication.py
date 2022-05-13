@@ -1,25 +1,32 @@
 from flask import Response, request
 from constants.REST import http, constants, error
-from internal.common import InvalidMethod
+from internal.common import InvalidMethod,contains
 from .classes import user
-from .funcs import HandleAuthentication, invokeEndpoint
+from .funcs import HandleAuthentication, invokeEndpoints
 
 
 class authentication():
   User = user
   def Route(app , sql):
     @app.route('/', methods = constants.HTTP_METHODS)
-    def login() :
+    def auth_login() : return authentication.login(app,sql)
+  
+  def login(app,sql):
       if request.method != 'POST':
         return InvalidMethod('POST')
-      
+      data = request.get_data()
+      if not (contains(b'{', data) and contains(b'}', data)):
+        return authentication.Bad_request()
       cur = sql.connection.cursor()
-      if HandleAuthentication(cur) == (-1) :
-        return authentication.Bad_login()
-      auth, token, password  = HandleAuthentication(cur)
       
-      if not auth:
+      if HandleAuthentication(cur) == (-1) :
+        return authentication.Bad_request()
+      if HandleAuthentication(cur) == (-2) :
         return authentication.Bad_login()
+      
+      
+      auth, token, password  = HandleAuthentication(cur)
+    
         
       auth = cur.fetchone()  
       endpoint = auth[2]
@@ -28,12 +35,15 @@ class authentication():
       authentication.User.setUser(token,password,endpoint)
       
       
-      invokeEndpoint(endpoint)
+      invokeEndpoints(endpoint)
 
       return Response("Signed in as :"+endpoint, status = http.StatusOk)
     
   def Bad_login ():
-    return Response("Bad Login", status = http.StatusNotAcceptable )
+    return Response("Invalid Token or Password", status = http.StatusNotAcceptable )
+        
+  def Bad_request ():
+    return Response("Invalid request body", status = http.StatusBadRequest )
         
       
       

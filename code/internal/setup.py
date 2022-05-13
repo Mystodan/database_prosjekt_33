@@ -8,6 +8,14 @@ class setupInstance ():
     return Flask(inn)
   
   def configureApp(app):
+    """Configures Flask with current Credentials
+
+    Args:
+        app (Flask): current Flask application
+
+    Returns:
+        app(Flask): configured Flask application
+    """
     app.config['MYSQL_HOST']= credentials.DB_HOST
     app.config['MYSQL_USER']= credentials.DB_USER
     app.config['MYSQL_PASSWORD']= credentials.DB_PASSWORD
