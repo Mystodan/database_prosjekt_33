@@ -93,11 +93,11 @@ URL:        http://127.0.0.1:5000/get_model <br>
 
 #### Storekeeper
 METHOD:     **GET** <br>
-URL:        http://127.0.0.1:5000/get_available <br>
+URL:        http://127.0.0.1:5000/employee/get_available <br>
 >Output:     Retrieve all skis that have the state "available". <br>
 
 METHOD:     **PUT** <br>
-URL:        http://127.0.0.1:5000/change_info <br>
+URL:        http://127.0.0.1:5000/employee/change_info <br>
             Body (raw, JSON): 
 
     {
@@ -107,7 +107,7 @@ URL:        http://127.0.0.1:5000/change_info <br>
 >Output:    Change the info (description) of a newly made ski type (typeID: 1) to "Test 123"
 
 METHOD:     **PUT** <br>
-URL:        http://127.0.0.1:5000/change_state_ready <br>
+URL:        http://127.0.0.1:5000/employee/change_state_ready <br>
             Body (raw, JSON): 
 
     {
@@ -116,7 +116,7 @@ URL:        http://127.0.0.1:5000/change_state_ready <br>
 >Output:    Changes the state of order 4 from "available" to "ready"
 
 METHOD:     **POST** <br>
-URL:        http://127.0.0.1:5000/create_record <br>
+URL:        http://127.0.0.1:5000/employee/create_record <br>
             Body (raw, JSON): 
 
     {
@@ -196,7 +196,7 @@ URL:        http://127.0.0.1:5000/get_order_info <br>
 #### Customer representative
 
 METHOD:     **GET** <br>
-URL:        http://127.0.0.1:5000/get_state  <br>
+URL:        http://127.0.0.1:5000/employee/get_state  <br>
             Body (raw, JSON): 
             
     {  
@@ -205,7 +205,7 @@ URL:        http://127.0.0.1:5000/get_state  <br>
 >Output:     Retrieve a list of all orders with the state equal to "new". <br>
 
 METHOD:     **PUT** <br>
-URL:        http://127.0.0.1:5000/change_state_open <br>
+URL:        http://127.0.0.1:5000/employee/change_state_open <br>
             Body (raw, JSON): 
 
     {  
@@ -214,7 +214,7 @@ URL:        http://127.0.0.1:5000/change_state_open <br>
 >Output:    Changes the "state" of an order from "new" to "open"
 
 METHOD:     **PUT** <br>
-URL:        http://127.0.0.1:5000/change_state_available <br>
+URL:        http://127.0.0.1:5000/employee/change_state_available <br>
             Body (raw, JSON): 
 
     {  
@@ -223,7 +223,7 @@ URL:        http://127.0.0.1:5000/change_state_available <br>
 >Output:    Changes the "state" of an order from "open" to "available"
 
 METHOD:     **POST** <br>
-URL:        http://127.0.0.1:5000/fill_order <br>
+URL:        http://127.0.0.1:5000/employee/fill_order <br>
             Body (raw, JSON): 
 
     {
@@ -237,7 +237,7 @@ URL:        http://127.0.0.1:5000/fill_order <br>
 #### Production planner
 
 METHOD:     **POST** <br>
-URL:        http://127.0.0.1:5000/fill_plan <br>
+URL:        http://127.0.0.1:5000/employee/fill_plan <br>
             Body (raw, JSON): 
 
     {
