@@ -8,7 +8,7 @@ from .funcs import HandleAuthentication, invokeEndpoints
 class authentication():
   User = user
   def Route(app , sql):
-    @app.route('/', methods = constants.HTTP_METHODS)
+    @app.route('/login', methods = constants.HTTP_METHODS)
     def auth_login() : return authentication.login(app,sql)
   
   def login(app,sql):
