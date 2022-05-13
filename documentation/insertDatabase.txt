@@ -43,8 +43,8 @@ INSERT INTO `productionplan` (`employeeNumber`, `typeID`, `quantity`, `startDate
 ("2", "1", "1200", "2022-07-01", "22-07-29"),
 ("2", "2", "1300", "2022-08-01", "22-08-29");
 
-INSERT INTO `shipment` (orderNumber, transporterID, shippingAddress, pickUpDate, state) VALUES
-("3", "2", "Ringkollen 1F", "2022-01-01", "ready");
+INSERT INTO `shipment` (orderNumber, transporterID, shippingAddress, pickUpDate, driverID, state) VALUES
+("3", "2", "Ringkollen 1F", "2022-01-01", "1", "ready");
 
 INSERT INTO `ski` (`typeID`, `length`, `reserved`) VALUES
 (1, "142", 0),

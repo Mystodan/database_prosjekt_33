@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 13, 2022 at 04:34 PM
+-- Generation Time: May 13, 2022 at 06:58 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -72,6 +72,16 @@ INSERT INTO `customer` (`customerID`, `customerName`, `startDate`, `endDate`, `a
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `customerrep`
+--
+
+CREATE TABLE `customerrep` (
+  `department` varchar(20) COLLATE utf8_danish_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `employee`
 --
 
@@ -97,7 +107,7 @@ INSERT INTO `employee` (`employeeNumber`, `name`, `department`) VALUES
 
 CREATE TABLE `franchise` (
   `customerID` int(20) NOT NULL,
-  `negotiatedPrice` varchar(60) COLLATE utf8_danish_ci NOT NULL,
+  `negotiatedPrice` int(20) NOT NULL,
   `information` varchar(200) COLLATE utf8_danish_ci DEFAULT NULL,
   `address` varchar(30) COLLATE utf8_danish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci;
@@ -109,8 +119,9 @@ CREATE TABLE `franchise` (
 --
 
 CREATE TABLE `orders` (
-  `customerID` int(20) NOT NULL,
   `orderNumber` int(20) NOT NULL,
+  `customerID` int(20) NOT NULL,
+  `productID` int(20) NOT NULL,
   `quantity` int(2) NOT NULL,
   `totalPrice` int(11) NOT NULL,
   `state` enum('new','open','available','cancelled','ready','shipped') COLLATE utf8_danish_ci NOT NULL,
@@ -121,13 +132,13 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`customerID`, `orderNumber`, `quantity`, `totalPrice`, `state`, `date`) VALUES
-(1, 1, 10, 1000, 'new', '2022-05-13 14:34:28'),
-(1, 2, 20, 2000, 'open', '2022-05-13 14:34:28'),
-(1, 3, 30, 3000, 'ready', '2022-05-13 14:34:28'),
-(1, 4, 40, 4000, 'available', '2022-05-13 14:34:28'),
-(2, 5, 50, 5000, 'cancelled', '2022-05-13 14:34:28'),
-(2, 6, 60, 6000, 'shipped', '2022-05-13 14:34:28');
+INSERT INTO `orders` (`orderNumber`, `customerID`, `productID`, `quantity`, `totalPrice`, `state`, `date`) VALUES
+(1, 1, 0, 10, 1000, 'new', '2022-05-13 16:58:25'),
+(2, 1, 0, 20, 2000, 'open', '2022-05-13 16:58:25'),
+(3, 1, 0, 30, 3000, 'ready', '2022-05-13 16:58:25'),
+(4, 1, 0, 40, 4000, 'available', '2022-05-13 16:58:25'),
+(5, 2, 0, 50, 5000, 'cancelled', '2022-05-13 16:58:25'),
+(6, 2, 0, 60, 6000, 'shipped', '2022-05-13 16:58:25');
 
 -- --------------------------------------------------------
 
@@ -156,6 +167,16 @@ INSERT INTO `productionplan` (`employeeNumber`, `quantity`, `typeID`, `startDate
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `productionplanner`
+--
+
+CREATE TABLE `productionplanner` (
+  `department` varchar(20) COLLATE utf8_danish_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `shipment`
 --
 
@@ -163,6 +184,7 @@ CREATE TABLE `shipment` (
   `shipmentNumber` int(20) NOT NULL,
   `orderNumber` int(20) NOT NULL,
   `transporterID` int(20) NOT NULL,
+  `driverID` int(20) NOT NULL,
   `shippingAddress` varchar(100) COLLATE utf8_danish_ci NOT NULL,
   `pickUpDate` timestamp NOT NULL DEFAULT current_timestamp(),
   `state` enum('ready','shipped') COLLATE utf8_danish_ci NOT NULL
@@ -172,8 +194,8 @@ CREATE TABLE `shipment` (
 -- Dumping data for table `shipment`
 --
 
-INSERT INTO `shipment` (`shipmentNumber`, `orderNumber`, `transporterID`, `shippingAddress`, `pickUpDate`, `state`) VALUES
-(1, 3, 2, 'Ringkollen 1F', '2021-12-31 23:00:00', 'ready');
+INSERT INTO `shipment` (`shipmentNumber`, `orderNumber`, `transporterID`, `driverID`, `shippingAddress`, `pickUpDate`, `state`) VALUES
+(1, 3, 2, 1, 'Ringkollen 1F', '2021-12-31 23:00:00', 'ready');
 
 -- --------------------------------------------------------
 
@@ -263,6 +285,16 @@ CREATE TABLE `store` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `storekeeper`
+--
+
+CREATE TABLE `storekeeper` (
+  `department` varchar(20) COLLATE utf8_danish_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `teamskier`
 --
 
@@ -319,7 +351,7 @@ ALTER TABLE `employee`
 -- Indexes for table `franchise`
 --
 ALTER TABLE `franchise`
-  ADD KEY `customerID` (`customerID`);
+  ADD PRIMARY KEY (`customerID`);
 
 --
 -- Indexes for table `orders`
@@ -367,7 +399,7 @@ ALTER TABLE `store`
 -- Indexes for table `teamskier`
 --
 ALTER TABLE `teamskier`
-  ADD KEY `customerID` (`customerID`);
+  ADD PRIMARY KEY (`customerID`);
 
 --
 -- Indexes for table `transporter`
@@ -441,45 +473,45 @@ ALTER TABLE `transporter`
 -- Constraints for table `franchise`
 --
 ALTER TABLE `franchise`
-  ADD CONSTRAINT `franchise_ibfk_1` FOREIGN KEY (`customerID`) REFERENCES `customer` (`customerID`);
+  ADD CONSTRAINT `franchise_ibfk_1` FOREIGN KEY (`customerID`) REFERENCES `customer` (`customerID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `orders`
 --
 ALTER TABLE `orders`
-  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customerID`) REFERENCES `customer` (`customerID`);
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customerID`) REFERENCES `customer` (`customerID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `productionplan`
 --
 ALTER TABLE `productionplan`
-  ADD CONSTRAINT `productionplan_ibfk_1` FOREIGN KEY (`employeeNumber`) REFERENCES `employee` (`employeeNumber`),
-  ADD CONSTRAINT `productionplan_ibfk_2` FOREIGN KEY (`typeID`) REFERENCES `skitype` (`typeID`);
+  ADD CONSTRAINT `productionplan_ibfk_1` FOREIGN KEY (`employeeNumber`) REFERENCES `employee` (`employeeNumber`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `productionplan_ibfk_2` FOREIGN KEY (`typeID`) REFERENCES `skitype` (`typeID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `shipment`
 --
 ALTER TABLE `shipment`
-  ADD CONSTRAINT `shipment_ibfk_1` FOREIGN KEY (`transporterID`) REFERENCES `transporter` (`transporterID`),
-  ADD CONSTRAINT `shipment_ibfk_2` FOREIGN KEY (`orderNumber`) REFERENCES `orders` (`orderNumber`);
+  ADD CONSTRAINT `shipment_ibfk_1` FOREIGN KEY (`transporterID`) REFERENCES `transporter` (`transporterID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `shipment_ibfk_2` FOREIGN KEY (`orderNumber`) REFERENCES `orders` (`orderNumber`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `ski`
 --
 ALTER TABLE `ski`
-  ADD CONSTRAINT `ski_ibfk_1` FOREIGN KEY (`typeID`) REFERENCES `skitype` (`typeID`);
+  ADD CONSTRAINT `ski_ibfk_1` FOREIGN KEY (`typeID`) REFERENCES `skitype` (`typeID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `store`
 --
 ALTER TABLE `store`
-  ADD CONSTRAINT `store_ibfk_1` FOREIGN KEY (`customerID`) REFERENCES `customer` (`customerID`);
+  ADD CONSTRAINT `store_ibfk_1` FOREIGN KEY (`customerID`) REFERENCES `customer` (`customerID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `teamskier`
 --
 ALTER TABLE `teamskier`
-  ADD CONSTRAINT `teamskier_ibfk_1` FOREIGN KEY (`customerID`) REFERENCES `customer` (`customerID`);
+  ADD CONSTRAINT `teamskier_ibfk_1` FOREIGN KEY (`customerID`) REFERENCES `customer` (`customerID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
