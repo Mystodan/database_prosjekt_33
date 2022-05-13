@@ -1,5 +1,5 @@
 from flask import Response, request
-from constants.REST import http, constants
+from constants.REST import http, constants, error
 from internal.common import InvalidMethod
 from .classes import user
 from .funcs import HandleAuthentication, invokeEndpoint
@@ -12,23 +12,28 @@ class authentication():
     def login() :
       if request.method != 'POST':
         return InvalidMethod('POST')
-
+      
       cur = sql.connection.cursor()
+      if HandleAuthentication(cur) == (-1) :
+        return authentication.Bad_login()
       auth, token, password  = HandleAuthentication(cur)
       
       if not auth:
-        return Response("Bad Login", status = http.StatusNotAcceptable )
+        return authentication.Bad_login()
         
       auth = cur.fetchone()  
       endpoint = auth[2]
       if authentication.User.checkUser(token,password,endpoint) :
-        return Response("Already signed in as "+endpoint, status = http.StatusOk)
+        return Response("Already signed in as "+endpoint, status = http.StatusAlreadyReported)
       authentication.User.setUser(token,password,endpoint)
       
       
       invokeEndpoint(endpoint)
 
       return Response("Signed in as :"+endpoint, status = http.StatusOk)
+    
+  def Bad_login ():
+    return Response("Bad Login", status = http.StatusNotAcceptable )
         
       
       

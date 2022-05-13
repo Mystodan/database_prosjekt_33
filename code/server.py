@@ -16,7 +16,6 @@ auth_user.setRandomizer()
 setup             = setupInstance
 app               = setup.init(__name__)
 sql               = MySQL(app)
-
 # configure flask
 setup             .configureApp(app)
 

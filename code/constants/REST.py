@@ -32,6 +32,9 @@ class http(object):
 # The server doesn’t find any content.
 # That conforms, to the criteria given by the user agent in the Accept header sent in the request.
   StatusNotAcceptable = 406
+# Allows a client to tell the server that the same resource (with the same binding) was mentioned earlier. 
+# It never appears as a true HTTP response code in the status line, and only appears in bodies.
+  StatusAlreadyReported = 208
 # Indicates that the request has succeeded and a new resource has been created as a result.
   StatusCreated = 201
 # Indicates that the request has succeeded.
