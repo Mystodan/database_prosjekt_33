@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 31. Mar, 2022 15:02 PM
--- Tjener-versjon: 10.4.22-MariaDB
+-- Generation Time: May 13, 2022 at 04:34 PM
+-- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -24,7 +24,31 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Tabellstruktur for tabell `customer`
+-- Table structure for table `authentication`
+--
+
+CREATE TABLE `authentication` (
+  `Auth_Token` varchar(20) COLLATE utf8_danish_ci NOT NULL,
+  `password` varchar(200) COLLATE utf8_danish_ci DEFAULT '',
+  `Endpoint` enum('customer_rep','storekeeper','production_planner','customer','transporter','public') COLLATE utf8_danish_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci;
+
+--
+-- Dumping data for table `authentication`
+--
+
+INSERT INTO `authentication` (`Auth_Token`, `password`, `Endpoint`) VALUES
+('Customer', '', 'customer'),
+('Customer_rep', 'admin', 'customer_rep'),
+('Prod_planner', 'admin', 'production_planner'),
+('Public', '', 'public'),
+('Storekeeper', 'admin', 'storekeeper'),
+('Transporter', '', 'transporter');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customer`
 --
 
 CREATE TABLE `customer` (
@@ -36,7 +60,7 @@ CREATE TABLE `customer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci;
 
 --
--- Dataark for tabell `customer`
+-- Dumping data for table `customer`
 --
 
 INSERT INTO `customer` (`customerID`, `customerName`, `startDate`, `endDate`, `address`) VALUES
@@ -48,7 +72,7 @@ INSERT INTO `customer` (`customerID`, `customerName`, `startDate`, `endDate`, `a
 -- --------------------------------------------------------
 
 --
--- Tabellstruktur for tabell `employee`
+-- Table structure for table `employee`
 --
 
 CREATE TABLE `employee` (
@@ -58,7 +82,7 @@ CREATE TABLE `employee` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci;
 
 --
--- Dataark for tabell `employee`
+-- Dumping data for table `employee`
 --
 
 INSERT INTO `employee` (`employeeNumber`, `name`, `department`) VALUES
@@ -68,7 +92,7 @@ INSERT INTO `employee` (`employeeNumber`, `name`, `department`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabellstruktur for tabell `franchise`
+-- Table structure for table `franchise`
 --
 
 CREATE TABLE `franchise` (
@@ -81,7 +105,7 @@ CREATE TABLE `franchise` (
 -- --------------------------------------------------------
 
 --
--- Tabellstruktur for tabell `orders`
+-- Table structure for table `orders`
 --
 
 CREATE TABLE `orders` (
@@ -94,21 +118,21 @@ CREATE TABLE `orders` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci;
 
 --
--- Dataark for tabell `orders`
+-- Dumping data for table `orders`
 --
 
 INSERT INTO `orders` (`customerID`, `orderNumber`, `quantity`, `totalPrice`, `state`, `date`) VALUES
-(1, 1, 10, 1000, 'new', '2022-03-31 13:00:05'),
-(1, 2, 20, 2000, 'open', '2022-03-31 13:00:05'),
-(1, 3, 30, 3000, 'ready', '2022-03-31 13:00:05'),
-(1, 4, 40, 4000, 'available', '2022-03-31 13:00:05'),
-(2, 5, 50, 5000, 'cancelled', '2022-03-31 13:00:05'),
-(2, 6, 60, 6000, 'shipped', '2022-03-31 13:00:05');
+(1, 1, 10, 1000, 'new', '2022-05-13 14:34:28'),
+(1, 2, 20, 2000, 'open', '2022-05-13 14:34:28'),
+(1, 3, 30, 3000, 'ready', '2022-05-13 14:34:28'),
+(1, 4, 40, 4000, 'available', '2022-05-13 14:34:28'),
+(2, 5, 50, 5000, 'cancelled', '2022-05-13 14:34:28'),
+(2, 6, 60, 6000, 'shipped', '2022-05-13 14:34:28');
 
 -- --------------------------------------------------------
 
 --
--- Tabellstruktur for tabell `productionplan`
+-- Table structure for table `productionplan`
 --
 
 CREATE TABLE `productionplan` (
@@ -120,7 +144,7 @@ CREATE TABLE `productionplan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci;
 
 --
--- Dataark for tabell `productionplan`
+-- Dumping data for table `productionplan`
 --
 
 INSERT INTO `productionplan` (`employeeNumber`, `quantity`, `typeID`, `startDate`, `endDate`) VALUES
@@ -132,7 +156,7 @@ INSERT INTO `productionplan` (`employeeNumber`, `quantity`, `typeID`, `startDate
 -- --------------------------------------------------------
 
 --
--- Tabellstruktur for tabell `shipment`
+-- Table structure for table `shipment`
 --
 
 CREATE TABLE `shipment` (
@@ -145,7 +169,7 @@ CREATE TABLE `shipment` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci;
 
 --
--- Dataark for tabell `shipment`
+-- Dumping data for table `shipment`
 --
 
 INSERT INTO `shipment` (`shipmentNumber`, `orderNumber`, `transporterID`, `shippingAddress`, `pickUpDate`, `state`) VALUES
@@ -154,7 +178,7 @@ INSERT INTO `shipment` (`shipmentNumber`, `orderNumber`, `transporterID`, `shipp
 -- --------------------------------------------------------
 
 --
--- Tabellstruktur for tabell `ski`
+-- Table structure for table `ski`
 --
 
 CREATE TABLE `ski` (
@@ -165,7 +189,7 @@ CREATE TABLE `ski` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci;
 
 --
--- Dataark for tabell `ski`
+-- Dumping data for table `ski`
 --
 
 INSERT INTO `ski` (`productID`, `typeID`, `length`, `reserved`) VALUES
@@ -201,7 +225,7 @@ INSERT INTO `ski` (`productID`, `typeID`, `length`, `reserved`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabellstruktur for tabell `skitype`
+-- Table structure for table `skitype`
 --
 
 CREATE TABLE `skitype` (
@@ -215,7 +239,7 @@ CREATE TABLE `skitype` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci;
 
 --
--- Dataark for tabell `skitype`
+-- Dumping data for table `skitype`
 --
 
 INSERT INTO `skitype` (`typeID`, `type`, `model`, `description`, `historical`, `url`, `msrp`) VALUES
@@ -227,7 +251,7 @@ INSERT INTO `skitype` (`typeID`, `type`, `model`, `description`, `historical`, `
 -- --------------------------------------------------------
 
 --
--- Tabellstruktur for tabell `store`
+-- Table structure for table `store`
 --
 
 CREATE TABLE `store` (
@@ -239,7 +263,7 @@ CREATE TABLE `store` (
 -- --------------------------------------------------------
 
 --
--- Tabellstruktur for tabell `teamskier`
+-- Table structure for table `teamskier`
 --
 
 CREATE TABLE `teamskier` (
@@ -252,7 +276,7 @@ CREATE TABLE `teamskier` (
 -- --------------------------------------------------------
 
 --
--- Tabellstruktur for tabell `transporter`
+-- Table structure for table `transporter`
 --
 
 CREATE TABLE `transporter` (
@@ -261,7 +285,7 @@ CREATE TABLE `transporter` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci;
 
 --
--- Dataark for tabell `transporter`
+-- Dumping data for table `transporter`
 --
 
 INSERT INTO `transporter` (`transporterID`, `name`) VALUES
@@ -272,6 +296,12 @@ INSERT INTO `transporter` (`transporterID`, `name`) VALUES
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `authentication`
+--
+ALTER TABLE `authentication`
+  ADD PRIMARY KEY (`Auth_Token`);
 
 --
 -- Indexes for table `customer`
@@ -404,49 +434,49 @@ ALTER TABLE `transporter`
   MODIFY `transporterID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- Begrensninger for dumpede tabeller
+-- Constraints for dumped tables
 --
 
 --
--- Begrensninger for tabell `franchise`
+-- Constraints for table `franchise`
 --
 ALTER TABLE `franchise`
   ADD CONSTRAINT `franchise_ibfk_1` FOREIGN KEY (`customerID`) REFERENCES `customer` (`customerID`);
 
 --
--- Begrensninger for tabell `orders`
+-- Constraints for table `orders`
 --
 ALTER TABLE `orders`
   ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customerID`) REFERENCES `customer` (`customerID`);
 
 --
--- Begrensninger for tabell `productionplan`
+-- Constraints for table `productionplan`
 --
 ALTER TABLE `productionplan`
   ADD CONSTRAINT `productionplan_ibfk_1` FOREIGN KEY (`employeeNumber`) REFERENCES `employee` (`employeeNumber`),
   ADD CONSTRAINT `productionplan_ibfk_2` FOREIGN KEY (`typeID`) REFERENCES `skitype` (`typeID`);
 
 --
--- Begrensninger for tabell `shipment`
+-- Constraints for table `shipment`
 --
 ALTER TABLE `shipment`
   ADD CONSTRAINT `shipment_ibfk_1` FOREIGN KEY (`transporterID`) REFERENCES `transporter` (`transporterID`),
   ADD CONSTRAINT `shipment_ibfk_2` FOREIGN KEY (`orderNumber`) REFERENCES `orders` (`orderNumber`);
 
 --
--- Begrensninger for tabell `ski`
+-- Constraints for table `ski`
 --
 ALTER TABLE `ski`
   ADD CONSTRAINT `ski_ibfk_1` FOREIGN KEY (`typeID`) REFERENCES `skitype` (`typeID`);
 
 --
--- Begrensninger for tabell `store`
+-- Constraints for table `store`
 --
 ALTER TABLE `store`
   ADD CONSTRAINT `store_ibfk_1` FOREIGN KEY (`customerID`) REFERENCES `customer` (`customerID`);
 
 --
--- Begrensninger for tabell `teamskier`
+-- Constraints for table `teamskier`
 --
 ALTER TABLE `teamskier`
   ADD CONSTRAINT `teamskier_ibfk_1` FOREIGN KEY (`customerID`) REFERENCES `customer` (`customerID`);

@@ -7,7 +7,6 @@ from internal.Endpoints.transporterEndpoint import Transporter
 from constants.REST import constantEndpoints as ep
 from constants.rules import rules
 from .classes import auth_user, user
-import cryptocode as hash
 from flask import request
 
 def contains (want, list):
