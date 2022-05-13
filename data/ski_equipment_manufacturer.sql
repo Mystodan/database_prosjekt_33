@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 13, 2022 at 06:58 PM
+-- Generation Time: May 13, 2022 at 07:12 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -121,7 +121,6 @@ CREATE TABLE `franchise` (
 CREATE TABLE `orders` (
   `orderNumber` int(20) NOT NULL,
   `customerID` int(20) NOT NULL,
-  `productID` int(20) NOT NULL,
   `quantity` int(2) NOT NULL,
   `totalPrice` int(11) NOT NULL,
   `state` enum('new','open','available','cancelled','ready','shipped') COLLATE utf8_danish_ci NOT NULL,
@@ -132,13 +131,13 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`orderNumber`, `customerID`, `productID`, `quantity`, `totalPrice`, `state`, `date`) VALUES
-(1, 1, 0, 10, 1000, 'new', '2022-05-13 16:58:25'),
-(2, 1, 0, 20, 2000, 'open', '2022-05-13 16:58:25'),
-(3, 1, 0, 30, 3000, 'ready', '2022-05-13 16:58:25'),
-(4, 1, 0, 40, 4000, 'available', '2022-05-13 16:58:25'),
-(5, 2, 0, 50, 5000, 'cancelled', '2022-05-13 16:58:25'),
-(6, 2, 0, 60, 6000, 'shipped', '2022-05-13 16:58:25');
+INSERT INTO `orders` (`orderNumber`, `customerID`, `quantity`, `totalPrice`, `state`, `date`) VALUES
+(1, 1, 10, 1000, 'new', '2022-05-13 17:12:03'),
+(2, 1, 20, 2000, 'open', '2022-05-13 17:12:03'),
+(3, 1, 30, 3000, 'ready', '2022-05-13 17:12:03'),
+(4, 1, 40, 4000, 'available', '2022-05-13 17:12:03'),
+(5, 2, 50, 5000, 'cancelled', '2022-05-13 17:12:03'),
+(6, 2, 60, 6000, 'shipped', '2022-05-13 17:12:03');
 
 -- --------------------------------------------------------
 
@@ -147,10 +146,10 @@ INSERT INTO `orders` (`orderNumber`, `customerID`, `productID`, `quantity`, `tot
 --
 
 CREATE TABLE `productionplan` (
+  `startDate` date NOT NULL,
   `employeeNumber` int(20) NOT NULL,
   `quantity` int(11) NOT NULL,
   `typeID` int(11) NOT NULL,
-  `startDate` date NOT NULL,
   `endDate` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci;
 
@@ -158,11 +157,11 @@ CREATE TABLE `productionplan` (
 -- Dumping data for table `productionplan`
 --
 
-INSERT INTO `productionplan` (`employeeNumber`, `quantity`, `typeID`, `startDate`, `endDate`) VALUES
-(1, 1000, 1, '2022-05-01', '2022-05-29'),
-(1, 1100, 2, '2022-06-01', '2022-06-29'),
-(2, 1200, 1, '2022-07-01', '2022-07-29'),
-(2, 1300, 2, '2022-08-01', '2022-08-29');
+INSERT INTO `productionplan` (`startDate`, `employeeNumber`, `quantity`, `typeID`, `endDate`) VALUES
+('2022-05-01', 1, 1000, 1, '2022-05-29'),
+('2022-06-01', 1, 1100, 2, '2022-06-29'),
+('2022-07-01', 2, 1200, 1, '2022-07-29'),
+('2022-08-01', 2, 1300, 2, '2022-08-29');
 
 -- --------------------------------------------------------
 
