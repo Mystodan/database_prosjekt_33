@@ -52,3 +52,5 @@ class error(object):
   
   Query_Duplicate = "QUERY: Input already exists within database"
   
+  No_DataBase_Found = "FATAL ERROR: Database connection not found"
+  DataBase_Found = " * SERVER: Database connection found!"

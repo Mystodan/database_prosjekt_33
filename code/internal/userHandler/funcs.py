@@ -12,6 +12,7 @@ from flask import request
 
 def HandleAuthentication(cur):
   """Handles the authentication for restricted endpoints
+  
   Args:
       cur (MySql.connection.cursor()): Connection to database
   """

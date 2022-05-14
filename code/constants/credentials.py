@@ -1,4 +1,9 @@
 
+from sqlalchemy import false
+
+
+isLoggedIn = False
+
 class Credentials(object):
   DB_HOST = "localhost" 
   DB_USER = "root"

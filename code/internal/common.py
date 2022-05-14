@@ -1,6 +1,7 @@
 from pickle import FALSE
 from flask_mysqldb import MySQL
 from flask import Response, request
+from constants.credentials import isLoggedIn
 from constants.REST import constants, error , http, constantEndpoints as ep
 from constants.rules import rules
 EP = ep.ENDPOINT_EMPLOYEE
@@ -31,7 +32,10 @@ def isAppropriate(inn , want, corrResp):
   else : return corrResp
   
 def preLogin (endpoint):
-  return Response((error.Login_NotLoggedIn+error.Endpoint+ endpoint), status = http.StatusForbidden )
+  resp = http.StatusUnauthorized
+  if isLoggedIn:
+    resp = http.StatusForbidden 
+  return Response((error.Login_NotLoggedIn+error.Endpoint+ endpoint), status = resp )
 
 def InvalidMethod(functioningMethods):
   return handleErr(error.Login_InvalidMethod+functioningMethods, http.StatusMethodNotAllowed )

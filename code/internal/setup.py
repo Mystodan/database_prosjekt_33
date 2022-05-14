@@ -1,8 +1,8 @@
 import sys
-from flask import Flask, request, jsonify
-from flask_mysqldb import MySQL
+from flask import Flask
 from constants.credentials import Credentials as credentials
-
+from constants.REST import error
+from internal.userHandler.classes import databaseUser
 class setupInstance ():
   def init(inn):
     return Flask(inn)
@@ -21,6 +21,16 @@ class setupInstance ():
     app.config['MYSQL_PASSWORD']= credentials.DB_PASSWORD
     app.config['MYSQL_DB']= credentials.DB_NAME
     return app
+  
+  def checkAndPreprocessConnection(app,sql):
+    try: # Checks for database connection and handles previous values
+      with app.app_context():
+        print(error.DataBase_Found)
+        databaseUser    .FlushAuth(sql)     # removes any leftover user if any
+        databaseUser    .DefineAllUsers()   # Adds all users
+    except: # No database found
+      print(error.No_DataBase_Found)
+      exit()
 
   def setListener(app, compare):
     if compare == '__main__':

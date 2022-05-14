@@ -1,5 +1,6 @@
 from flask import Response, request
-from constants.REST import http, constants, error
+from constants.credentials import Credentials
+from constants.REST import http, constants
 from internal.common import InvalidMethod,contains
 from .classes import user
 from .funcs import HandleAuthentication, invokeEndpoints
@@ -7,6 +8,7 @@ from .funcs import HandleAuthentication, invokeEndpoints
 
 class authentication():
   User = user
+  
   def Route(app , sql):
     @app.route('/login', methods = constants.HTTP_METHODS)
     def auth_login() : return authentication.login(app,sql)
@@ -33,7 +35,7 @@ class authentication():
       if authentication.User.checkUser(token,password,endpoint) :
         return Response("Already signed in as "+endpoint, status = http.StatusAlreadyReported)
       authentication.User.setUser(token,password,endpoint)
-      
+      Credentials.login = True
       
       invokeEndpoints(endpoint)
 
