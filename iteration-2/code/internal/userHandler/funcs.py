@@ -27,7 +27,10 @@ def HandleAuthentication(cur):
   password = "" # sets default password
   
   if hasPasw :
-    password = data['password'] # sets custom password
+    try:
+      password = data['password'] # sets custom password
+    except:
+      return (-1)
   _t,_p = token,password
   if rules.SET_HASH_USER: # Hashing
     userHash = auth_user.getHash(token, password)

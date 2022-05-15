@@ -101,7 +101,6 @@ class databaseUser():
     databaseUser.setUser("Customer_rep","admin","customer_rep")
     databaseUser.setUser("Prod_planner","admin","production_planner")
     databaseUser.setUser("Storekeeper","admin","storekeeper")
-    databaseUser.setUser("Public","","public")
     databaseUser.setUser("Transporter","","transporter")
     databaseUser.setUser("Customer","","customer")
 
