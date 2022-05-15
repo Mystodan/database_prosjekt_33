@@ -1,0 +1,67 @@
+INSERT INTO `transporter` (`name`) VALUES
+("Posten"),
+("PostNord"),
+("Bring");
+
+INSERT INTO `skitype` (`type`, `model`, `description`, `url`, `msrp`) VALUES
+( 'classic', 'activePro', 'Classic Active Pro series skii made for athletes that wants to get their socks wet!', 'https://www.xxl.no/', 1000),
+( 'classic', 'active', 'Classic Active series skii made for athletes that wants to get their socks dry!', 'https://www.xxl.no/', 800),
+("classic", "redline", "These are good for performance!","https://madshus.com/no-no/p/redline-3-0-f3", "7700"),
+("skate", "active", "These are good for stability!", "https://madshus.com/no-no/p/nordic-pro-skin", "4000");
+
+INSERT INTO `customer` (`customerName`, `address`,`startDate`, `endDate`) VALUES
+("Sang", "Ringkollen 1F",  "2022-05-01", "22-05-29"),
+("Daniel", "Maries vei 45","2022-06-01", "22-06-29"),
+("Lars", "Merkantveien xx","2022-07-01", "22-07-29"),
+("Mats", "Merkantveien xx","2022-08-01", "22-08-29");
+
+INSERT INTO `employee` (`name`, `department`) VALUES
+("Lars", "Sales"),
+("Mats", "Management");
+
+INSERT INTO `orders` (`customerID`,`quantity`, `totalPrice`, `state`) VALUES
+(1,10, 1000, "new"),
+(1,20, 2000, "open"),
+(1,30, 3000, "ready"),
+(1,40, 4000, "available"),
+(2,50, 5000, "cancelled"),
+(2,60, 6000, "shipped");
+
+INSERT INTO `productionplan` (`employeeNumber`, `typeID`, `quantity`, `startDate`, `endDate`) VALUES
+("1", "1", "1000", "2022-05-01", "22-05-29"),
+("1", "2", "1100", "2022-06-01", "22-06-29"),
+("2", "1", "1200", "2022-07-01", "22-07-29"),
+("2", "2", "1300", "2022-08-01", "22-08-29");
+
+INSERT INTO `shipment` (orderNumber, transporterID, shippingAddress, pickUpDate, state) VALUES
+("3", "2", "Ringkollen 1F", "2022-01-01", "ready");
+
+INSERT INTO `ski` (`typeID`, `length`, `reserved`) VALUES
+(1, "142", 0),
+(1, "147", 0),
+(1, "152", 0),
+(1, "157", 0),
+(1, "162", 0),
+(1, "167", 0),
+(1, "172", 0),
+(1, "177", 0),
+(1, "182", 0),
+(1, "187", 0),
+(1, "192", 0),
+(1, "197", 0),
+(1, "202", 0),
+(1, "207", 0),
+(2, "142", 0),
+(2, "147", 0),
+(2, "152", 0),
+(2, "157", 0),
+(2, "162", 0),
+(2, "167", 0),
+(2, "172", 0),
+(2, "177", 0),
+(2, "182", 0),
+(2, "187", 0),
+(2, "192", 0),
+(2, "197", 0),
+(2, "202", 0),
+(2, "207", 0);
