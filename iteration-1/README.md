@@ -36,7 +36,7 @@ Use `pip install` and then the required module name
 0.  Activate Apache and MySQL in XAMPP.
     - Use http://localhost/phpmyadmin/ to access phpMyAdmin
 1.  Download the SQL file and import it into phpMyAdmin. <br>
-    - Here is the required database <a href = https://git.gvk.idi.ntnu.no/course/idatg2204/idatg2204-2022-workspace/sangnn/project-group-33/-/blob/main/data/ski_equipment_manufacturer.sql>SQL file </a>
+    - Here is the required database <a href = https://git.gvk.idi.ntnu.no/course/idatg2204/idatg2204-2022-workspace/sangnn/project-group-33/-/blob/main/iteration-1/data/ski_equipment_manufacturer.sql>SQL file </a>
 2.  Download the project code (<a href = https://git.gvk.idi.ntnu.no/course/idatg2204/idatg2204-2022-workspace/sangnn/project-group-33/-/tree/main/code>these </a> are the different endpoints). <br>
 3.  Run the environment script in VS Code and then run the different endpoints you want to test. <br>
     - Heres a <a href = https://docs.python.org/3/library/venv.html>link</a> in order to setup environment
