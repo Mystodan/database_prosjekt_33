@@ -6,7 +6,7 @@ class Test_Constants(object):
 # Default URL
   URL = "http://127.0.0.1:5000"
 # Endpoints 
-  # Authentication
+ # Authentication
   URL_AUTH = URL+"/login"
   
   AUTH_CORRECT = [
@@ -42,12 +42,14 @@ class Test_Constants(object):
   AUTH_CORRECT_CODES = [200,208,200]
   AUTH_INCORRECT_CODES =[406,400]
 
+  
+  
 
 
 class Test_API(unittest.TestCase):
   TestClear = True
   def testAll(self):
-    Test_API.test_authentication(self)
+    self.test_authentication(self)
     
   def test_authentication(self):
     count = 0
@@ -60,6 +62,7 @@ class Test_API(unittest.TestCase):
       self.assertEqual(response.content,  (want.AUTH_CORRECT_BODY[i]))
     
       i=i+1
+      
     count +=i
     i = 0
     for curr in Test_Constants.AUTH_INCORRECT : 

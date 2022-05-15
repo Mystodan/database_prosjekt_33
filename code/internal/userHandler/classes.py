@@ -33,6 +33,7 @@ class auth_user ():
     auth_user.auth_password = password    
     auth_user.auth_hash = auth_user.encr()
     AllUsers.append(( auth_user.auth_token, auth_user.auth_password,auth_user.auth_hash ))
+    
   def setRandomizer():
     rand = random.randint(1,3)
     if rand == 3:

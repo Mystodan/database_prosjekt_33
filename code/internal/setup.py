@@ -7,7 +7,7 @@ class setupInstance ():
   def init(inn):
     return Flask(inn)
   
-  def configureApp(app):
+  def configureApp(app , credentials):
     """Configures Flask with current Credentials
 
     Args:

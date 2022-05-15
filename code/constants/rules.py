@@ -8,5 +8,5 @@ class rules(object):
   SET_HASH_USER:
       default: True - set hashing on database
   """
-  SET_LOGIN = True
-  SET_HASH_USER = True
+  SET_LOGIN = True      # rule for require login
+  SET_HASH_USER = True  # rule for allowing hashing

@@ -7,17 +7,19 @@ from internal.Endpoints.transporterEndpoint import Transporter
 from internal.setup import setupInstance
 from internal.userHandler.authentication import authentication
 from internal.userHandler.classes import databaseUser, auth_user
+from constants.credentials import Credentials as credentials
 from flask_mysqldb import MySQL
 
-# set Random Seed
+
+# set seed for auth
 auth_user         .setRandomizer()
-# setup flask
+# setup application
 setup             = setupInstance
 app               = setup.init(__name__)
 sql               = MySQL(app)
-# configure flask
-setup             .configureApp(app)  
-# checks connection to database and handles values
+# configures flask and connects credentials of database
+setup             .configureApp(app, credentials)  
+# checks connection to database and injects users to database
 setup             .checkAndPreprocessConnection(app,sql)
  
             
