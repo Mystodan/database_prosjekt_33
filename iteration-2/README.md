@@ -60,12 +60,21 @@ Use `pip install` and then the required module name
 
 > Navigate to \project-group-33\data and input the database
 
+## Verified users
+Auth_token	: "Customer"        <br>
+Password	:                   <br>
 
+Auth_token	: "Transporter"     <br>
+Password	:                   <br>
 
+Auth_token	: "Prod_planner"    <br>
+Password	: "admin"           <br>
 
+Auth_token	: "Storekeeper"     <br>
+Password	: "admin"           <br>
 
-
-
+Auth_token	: "Customer_rep"    <br>
+Password	: "admin"           <br>
 
 
 <br>
