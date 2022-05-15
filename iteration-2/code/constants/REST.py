@@ -42,7 +42,7 @@ class http(object):
   
   
 class error(object):
-  Login_InvalidMethod = "LOGIN: Invalid method, Use "
+  Login_InvalidMethod = "Invalid method, Use "
   
   Endpoint = ": "
 

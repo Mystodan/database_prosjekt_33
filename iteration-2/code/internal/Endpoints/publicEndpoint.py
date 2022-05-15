@@ -33,18 +33,22 @@ class Public ():
       noParams = False
       t = data.replace(b'\r\n',b'')
       if contains(b'{', data) and contains(b'}', data): # set to ignore all other input than JSON
-        print(t)
-        data = request.get_json()
+        try:
+          data = request.get_json()
+        except:
+          noParams = True  
         if data :
-          model = data['model']
-          order = order + "WHERE skitype.model = %s"
-          exec = [(model,)]
-          if len(data) == 2 :
-            length = data['length']
-            order = order + " AND ski.length = %s"
-            exec = [(model,),(length,)]
-          orders = cur.execute(order, exec)
-        
+          try:
+            model = data['model']
+            order = order + "WHERE skitype.model = %s"
+            exec = [(model,)]
+            if len(data) == 2 :
+              length = data['length']
+              order = order + " AND ski.length = %s"
+              exec = [(model,),(length,)]
+            orders = cur.execute(order, exec)
+          except:
+            noParams = True
         else : noParams = True
       else :
         noParams = True
