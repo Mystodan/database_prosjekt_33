@@ -5,7 +5,6 @@ from internal.Endpoints.customerEndpoint import Customer
 from internal.Endpoints.publicEndpoint import Public
 from internal.Endpoints.transporterEndpoint import Transporter
 from internal.common import contains
-from constants.REST import constantEndpoints as ep
 from constants.rules import rules
 from .classes import auth_user
 from flask import request
@@ -36,7 +35,7 @@ def HandleAuthentication(cur):
     userHash = auth_user.getHash(token, password)
     _t,_p = userHash, userHash
   try:
-    sql = 'SELECT * FROM `authentication` WHERE `authentication`.`Auth_Token` = "'+_t+'" AND `authentication`.`password` ="'+_p+'"'
+    sql = ('SELECT * FROM `authentication` WHERE `authentication`.`Auth_Token` = "'+_t+'" AND `authentication`.`password` ="'+_p+'"')
   except:
     return (-2) # return inappropriate state of function
   return cur.execute(sql),token, password # returns appropriate values

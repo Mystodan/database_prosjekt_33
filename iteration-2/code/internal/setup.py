@@ -1,4 +1,3 @@
-import sys
 from flask import Flask
 from constants.credentials import Credentials as credentials
 from constants.REST import error

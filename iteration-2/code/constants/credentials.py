@@ -1,7 +1,3 @@
-
-from sqlalchemy import false
-
-
 isLoggedIn = False
 
 class Credentials(object):
